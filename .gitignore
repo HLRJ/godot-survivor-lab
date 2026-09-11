@@ -1,0 +1,23 @@
+# Godot 4 generated cache
+.godot/
+
+# Build and export output
+build/
+dist/
+exports/
+
+# Editor-local settings
+.vscode/
+.idea/
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log
+
+# Download archives are reproducible; keep extracted CC0 assets only
+assets/third_party/kenney/_archives/
