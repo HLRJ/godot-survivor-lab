@@ -1,3 +1,5 @@
+> 此文档记录最初的个人学习 Demo 设计，已被 2026-09-13-learning-first-course-design.md 取代。保留仅用于设计演进记录。
+
 # Godot Survivor Lab Design
 
 ## Goal
@@ -24,8 +26,7 @@ The first playable must be understandable by a beginner and improve in visible s
 - Language: GDScript.
 - Platform: Windows desktop first.
 - Presentation: 2D pixel art.
-- Local path: `G:/AINmg/Codes/godot-survivor-lab`.
-- GitHub repository: `HLRJ/godot-survivor-lab`, private.
+- GitHub repository: `HLRJ/godot-survivor-lab`；本旧设计不约束仓库可见性。
 
 ## Asset Policy
 - Use Kenney CC0 assets for the learning build.
