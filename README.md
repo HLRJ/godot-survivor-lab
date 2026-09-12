@@ -10,6 +10,7 @@
 - 已经能打开并运行项目：进入 [Lesson 01：第一个 Scene](docs/lessons/01-first-scene.md)。
 - 已理解 Scene / Node：进入 [Lesson 02：玩家移动](docs/lessons/02-player-movement.md)。
 - 已会控制 Player 移动：进入 [Lesson 03：碰撞](docs/lessons/03-collision.md)。
+- 已理解碰撞：进入 [Lesson 04：Enemy 追踪 Player](docs/lessons/04-enemy-chase.md)。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
 ## 学习原则
@@ -57,4 +58,4 @@
 
 ## 当前进度
 
-Lesson 03 已完成：Player 已拥有碰撞体，并能被训练墙挡住。下一步是 Lesson 04：Enemy 追踪 Player。
+Lesson 04 已完成：Enemy 已能持续追踪 Player。下一步是 Lesson 05：不断刷怪。
