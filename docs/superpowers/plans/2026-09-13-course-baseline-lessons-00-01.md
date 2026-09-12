@@ -114,7 +114,7 @@ Kenney Roguelike Characters / Tiny Dungeon / Interface Sounds：CC0，保留各�
 > 此文档记录最初的个人学习 Demo 设计，已被 `2026-09-13-learning-first-course-design.md` 取代。保留仅用于设计演进记录。
 ```
 
-删除其中 `G:/AINmg/Codes/godot-survivor-lab` 本地绝对路径，并将 GitHub 状态描述从“private”改为“不在本旧设计中约束仓库可见性”。
+删除其中记录的本机绝对项目路径，并将 GitHub 状态描述从“private”改为“不在本旧设计中约束仓库可见性”。
 
 - [ ] **Step 7: 做文档与敏感信息静态检查**
 
@@ -122,7 +122,7 @@ Kenney Roguelike Characters / Tiny Dungeon / Interface Sounds：CC0，保留各�
 
 ```powershell
 git diff --check
-git grep -n -I -E 'G:/AINmg|G:\\AINmg|C:\\Users\\|ghp_|github_pat_|API[_-]?KEY|TOKEN=' -- . ':!assets/third_party/**'
+git grep -n -I -E '[A-Za-z]:[/\\]|ghp_|github_pat_|API[_-]?KEY|TOKEN=' -- . ':!assets/third_party/**'
 git ls-files | Select-String -Pattern '^\.env$|\.pem$|\.key$'
 ```
 
@@ -133,7 +133,7 @@ Expected：`git diff --check` 无错误；后两条无输出。
 在仓库根目录运行：
 
 ```powershell
-& 'D:\Program Files (x86)\Steam\steamapps\common\Godot Engine\godot.windows.opt.tools.64.exe' --headless --path . --editor --quit
+& $env:GODOT_EXE --headless --path . --editor --quit
 $LASTEXITCODE
 ```
 
@@ -199,7 +199,7 @@ git commit -m "docs: establish Chinese learning-first course baseline"
 - [ ] **Step 3: 执行 Lesson 00 技术验证**
 
 ```powershell
-& 'D:\Program Files (x86)\Steam\steamapps\common\Godot Engine\godot.windows.opt.tools.64.exe' --headless --path . --editor --quit
+& $env:GODOT_EXE --headless --path . --editor --quit
 $LASTEXITCODE
 git diff --check
 ```
@@ -284,7 +284,7 @@ Lesson 01 - 第一个 Scene
 - [ ] **Step 3: 先验证资源和 Scene 能被 Godot 加载**
 
 ```powershell
-& 'D:\Program Files (x86)\Steam\steamapps\common\Godot Engine\godot.windows.opt.tools.64.exe' --headless --path . --editor --quit
+& $env:GODOT_EXE --headless --path . --editor --quit
 $LASTEXITCODE
 ```
 
@@ -338,7 +338,7 @@ Checkpoint 写为 `lesson-01-first-scene`。
 - [ ] **Step 8: 验证、提交并创建 Lesson 01 Checkpoint**
 
 ```powershell
-& 'D:\Program Files (x86)\Steam\steamapps\common\Godot Engine\godot.windows.opt.tools.64.exe' --headless --path . --editor --quit
+& $env:GODOT_EXE --headless --path . --editor --quit
 $LASTEXITCODE
 git diff --check
 ```
@@ -370,7 +370,7 @@ Checkpoint Tag 指向本课独立提交；后续集成不得 squash 该提交。
 - [ ] **Step 1: 做完整敏感信息扫描**
 
 ```powershell
-git grep -n -I -E 'G:/AINmg|G:\\AINmg|C:\\Users\\|ghp_|github_pat_|API[_-]?KEY|TOKEN=|PASSWORD=' -- . ':!assets/third_party/**'
+git grep -n -I -E '[A-Za-z]:[/\\]|ghp_|github_pat_|API[_-]?KEY|TOKEN=|PASSWORD=' -- . ':!assets/third_party/**'
 git ls-files | Select-String -Pattern '^\.env$|\.env\.|\.pem$|\.key$|id_rsa|id_ed25519'
 ```
 
@@ -379,7 +379,7 @@ Expected：两条命令都无真实敏感信息命中。若第一条命中课程
 - [ ] **Step 2: 做候选公开版本最终 Godot 与 Git 验证**
 
 ```powershell
-& 'D:\Program Files (x86)\Steam\steamapps\common\Godot Engine\godot.windows.opt.tools.64.exe' --headless --path . --editor --quit
+& $env:GODOT_EXE --headless --path . --editor --quit
 $godotExit = $LASTEXITCODE
 git diff --check
 $status = git status --porcelain
