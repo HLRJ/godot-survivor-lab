@@ -55,6 +55,48 @@ Every mainline lesson must satisfy all of the following:
 
 If a lesson cannot fit those constraints, it should be split.
 
+### 4.1 AI Pair-Programming Contract
+
+AI is used to remove low-value friction, not to remove the learner from the learning loop.
+
+AI may freely handle:
+
+- Asset collection and license bookkeeping.
+- Git/GitHub housekeeping, branch creation, tags, and repetitive commit work.
+- Boilerplate project files.
+- Repetitive editor/file operations that do not teach the current lesson's core concept.
+- Verification commands, CI plumbing, and documentation formatting.
+
+For each lesson's **new Godot concept**, the learner must still interact with the result. At minimum the learner will:
+
+1. See the node/script change that introduced the concept.
+2. Run the feature.
+3. Change one meaningful value or small line of behavior.
+4. Predict what should happen before running again.
+5. Answer the short learning check in their own words when useful.
+
+The assistant may write the first working implementation when speed matters, but it must explain the smallest important code path and then give the learner a concrete modification to make or reason about. Full AI rewrites that bypass understanding are not the default.
+
+### 4.2 Learning-First Documentation Budget
+
+Before `v1.0-first-playable`, documentation is kept deliberately lean.
+
+The normal sequence is:
+
+1. Build the lesson feature.
+2. Learn and verify it.
+3. Capture the minimum reproducible lesson/checkpoint.
+4. Continue to the next gameplay feature.
+5. Polish public-facing teaching material only when it fixes a real learning problem or after the primary path is stable.
+
+Rules:
+
+- Do not write detailed future lessons before their feature exists.
+- Do not create screenshots or diagrams unless text is insufficient for the actual learner.
+- Concept pages are created when a concept is first encountered, not in advance as an encyclopedia.
+- Troubleshooting pages are created from real failures encountered during the primary learning path, then generalized for others.
+- Public teaching polish must not delay the next playable milestone merely for completeness or appearance.
+
 ## 5. Product Scope
 
 The first complete learning product is a minimal 2D Survivor-like with:
@@ -198,8 +240,7 @@ Each lesson ends with a permanent annotated checkpoint tag:
 - `lesson-00-environment`
 - `lesson-01-first-scene`
 - `lesson-02-player-movement`
-- ...
-- `lesson-18-ci`
+- through `lesson-18-ci`.
 
 Release milestones use semantic-like tags such as:
 
@@ -354,17 +395,16 @@ Troubleshooting documentation is added when a real blocker appears during the pr
 
 ## 16. Open-Source Policy
 
-The repository will become public only after the learning-first documentation baseline is coherent enough that a stranger can understand what the project is.
+The repository becomes public after the initial public baseline is coherent: README, license boundaries, and Lesson 00–01 are present and understandable. It does **not** wait for the whole course to be finished.
 
-Planned licensing:
+Licensing is explicit:
 
-- Project source code: **MIT License**.
-- Original teaching documentation: **CC BY 4.0**.
+- Project source code: **MIT License** in root `LICENSE`.
+- Original teaching documentation: **CC BY 4.0** in `docs/LICENSE`.
 - Kenney assets: retain **CC0** terms from the bundled source licenses.
+- Root `LICENSES.md` explains which files fall under which license.
 
-`LICENSES.md` will explain the boundary between code, original documentation, and third-party assets.
-
-Community features such as issue templates, Discussions, Good First Issues, and GitHub Pages are deferred until the main learning path is usable.
+Community features such as Discussions, Good First Issues, broad issue templates, and GitHub Pages remain deferred until the main learning path is usable.
 
 ## 17. Repository Structure Target
 
@@ -420,11 +460,12 @@ The secondary success metric must never cause the project to slow down the prima
 Once this design is approved, implementation proceeds in this order:
 
 1. Rework README into a learning-first course landing page.
-2. Add license boundaries and contribution expectations.
+2. Add `LICENSE`, `docs/LICENSE`, and clear third-party license boundaries.
 3. Create `docs/lessons/00-environment.md` and its checkpoint.
 4. Create `docs/lessons/01-first-scene.md` and its checkpoint.
-5. Start Lesson 02 player movement as the first meaningful gameplay feature.
-6. Continue one lesson at a time; after each lesson, run validation, write the lesson, tag the checkpoint, and only then move on.
-7. Make the repository public after the initial learning path and licensing presentation are coherent enough for external readers.
+5. Make the repository public once those baseline materials are coherent.
+6. Start Lesson 02 player movement as the first meaningful gameplay feature.
+7. Continue one lesson at a time; after each lesson, run validation, capture the minimum useful lesson/checkpoint, and move on.
+8. Defer broad public-facing polish until the maintainer's own learning path reveals what actually needs explanation.
 
 This order deliberately prevents public-facing polish from delaying the maintainer's actual Godot learning.
