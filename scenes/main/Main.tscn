@@ -28,5 +28,5 @@ offset_top = 110.0
 offset_right = 850.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 18
-text = "Lesson 01 - 第一个 Scene"
+text = "Lesson 02 - WASD 玩家移动"
 horizontal_alignment = 1
