@@ -31,6 +31,7 @@ func _run() -> void:
         _expect(player.collision_mask == 1, "Player collision_mask must be 1")
 
     if wall != null:
+        _expect(wall.scene_file_path == "res://scenes/world/TrainingWall.tscn", "TrainingWall must be instantiated from reusable scene")
         _expect(wall.get_node_or_null("CollisionShape2D") is CollisionShape2D, "TrainingWall must have CollisionShape2D")
         _expect(wall.collision_layer == 1, "TrainingWall collision_layer must be 1")
         _expect(wall.collision_mask == 1, "TrainingWall collision_mask must be 1")
