@@ -7,9 +7,15 @@
 atlas = ExtResource("1_player_sheet")
 region = Rect2(1, 1, 16, 16)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(36, 44)
+
 [node name="Player" type="CharacterBody2D" unique_id=1987229293]
 script = ExtResource("2_player_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=445899290]
 scale = Vector2(4, 4)
 texture = SubResource("AtlasTexture_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1035767444]
+shape = SubResource("RectangleShape2D_player")

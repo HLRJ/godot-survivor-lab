@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://scenes/world/TrainingWall.tscn" id="2_wall"]
 
 [node name="Main" type="Node2D"]
 
@@ -12,6 +13,9 @@ color = Color(0.055, 0.063, 0.078, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector2(640, 360)
+
+[node name="TrainingWall" parent="." instance=ExtResource("2_wall")]
+position = Vector2(820, 360)
 
 [node name="Title" type="Label" parent="."]
 offset_left = 430.0
@@ -28,5 +32,5 @@ offset_top = 110.0
 offset_right = 850.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 18
-text = "Lesson 02 - WASD 玩家移动"
+text = "Lesson 03 - 碰撞"
 horizontal_alignment = 1
