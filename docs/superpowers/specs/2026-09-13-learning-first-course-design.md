@@ -1,210 +1,198 @@
-# Godot Survivor Lab — Learning-First Course Design v1
+# Godot Survivor Lab——学习优先课程设计 v1
 
-## 1. Purpose and Priority
+## 1. 项目定位与优先级
 
-Godot Survivor Lab is first a personal rapid-learning project, and second an open-source teaching project.
+Godot Survivor Lab 的第一目标是帮助维护者自己快速学习并掌握 Godot 4，第二目标才是把这条真实学习路径整理成其他新手也能使用的开源教学项目。
 
-Priority is strict:
+优先级固定如下：
 
-1. **Primary:** help the maintainer learn Godot 4 quickly by building a visible, playable Survivor-like game.
-2. **Secondary:** package that same path so another beginner can follow it with minimal friction.
-3. **Never:** add teaching ceremony, community features, or documentation work that slows the primary learning loop without clear payoff.
+1. **第一目标：** 通过持续做出肉眼可见、可以玩的功能，让维护者快速上手 Godot 4。
+2. **第二目标：** 把已经亲自走通的学习路径整理成别人也能跟着完成的中文课程。
+3. **明确不做：** 为了课程包装、社区功能或文档形式感，明显拖慢第一目标。
 
-A design decision is accepted only if it improves one or both of these goals without materially slowing the first.
+所有设计决策都必须服从这个顺序。
 
-## 2. Target Learner
+## 2. 目标学习者
 
-The primary learner profile is:
+主要学习者就是维护者本人，同时也代表未来希望服务的新手用户：
 
-- Has little or no Godot experience.
-- May know some programming, but the course must not assume game-engine knowledge.
-- Learns better by making visible things than by reading theory first.
-- Wants a fast path to a small playable game rather than a complete survey of the engine.
-- Uses Windows desktop and Godot 4.7.2 stable for the first path.
+- Godot 经验很少或完全没有。
+- 可以有一定编程基础，但不能假设已经理解游戏引擎。
+- 更适合“先看到效果，再理解原理”的学习方式。
+- 希望尽快做出第一个可玩的小游戏，而不是先完整学习一遍引擎 API。
+- 第一条学习路线统一使用 Windows + Godot 4.7.2 stable + GDScript。
 
-The public teaching audience is intentionally the same profile. This avoids maintaining two different learning experiences.
+未来公开课程继续面向同一类人，避免维护两套不同的学习体验。
 
-## 3. Learning Philosophy
+## 3. 学习方法：结果优先，概念随后
 
-The course uses **result-first, concept-second** learning.
+每一课遵循同一条学习循环：
 
-Each lesson follows this loop:
+1. 先提出一个看得见的游戏效果。
+2. 只引入实现这个效果真正需要的 Godot 概念。
+3. 做出最小可运行版本。
+4. 立即运行观察结果。
+5. 修改一个参数或一小段行为并预测结果。
+6. 再解释为什么这些 Node、属性和代码会工作。
+7. 创建一个 Git Checkpoint，保证可以随时回到正确状态。
 
-1. Start with a visible gameplay goal.
-2. Introduce only the Godot concepts required for that goal.
-3. Build the smallest working version.
-4. Run it immediately.
-5. Change one parameter or behavior to create intuition.
-6. Explain why the code and nodes work.
-7. Record a checkpoint so the learner can recover from mistakes.
+课程**不单独安排一整套 GDScript 语法前置课**。变量、函数、类型、数组、信号等语法在真正用到时再学习。
 
-The course does **not** teach GDScript syntax as a standalone prerequisite. Syntax is introduced only when a gameplay need makes it useful.
+## 4. 每课的硬性约束
 
-## 4. Core Learning Constraints
+每一节主线课程原则上必须满足：
 
-Every mainline lesson must satisfy all of the following:
+- 目标时间：**20～45 分钟**。
+- 每课新增核心概念尽量不超过 **3 个**。
+- 结束时必须产生一个肉眼可见或可以听见的新结果。
+- 结束时项目必须可以正常运行。
+- 必须有对应 Git Checkpoint。
+- 至少包含一个“先预测、再修改、再运行”的小实验。
+- 不要求学习者临时去网上找素材。
+- 不要求安装与当前学习目标无关的额外工具。
 
-- Target duration: **20–45 minutes** for the primary learner.
-- Maximum new core concepts: **3** per lesson whenever practical.
-- Must produce a visible or audible result by the end.
-- Must end in a runnable Godot project state.
-- Must have a recovery checkpoint.
-- Must include at least one tiny experiment where the learner changes a value and predicts the result.
-- Must not require external asset hunting; required assets are already present in the repository.
-- Must not require optional tooling to continue the main path.
+如果一课塞不下，就拆成两课，而不是强行增加认知负担。
 
-If a lesson cannot fit those constraints, it should be split.
+### 4.1 AI 结对学习规则
 
-### 4.1 AI Pair-Programming Contract
+AI 的作用是消灭低价值重复劳动，而不是把学习者踢出学习过程。
 
-AI is used to remove low-value friction, not to remove the learner from the learning loop.
+AI 可以直接处理：
 
-AI may freely handle:
+- 素材下载、整理和许可证记录。
+- Git/GitHub 分支、提交、标签等重复操作。
+- 样板配置文件。
+- 与本课核心概念无关的重复编辑器操作或文件操作。
+- 验证命令、CI 配置和文档排版。
 
-- Asset collection and license bookkeeping.
-- Git/GitHub housekeeping, branch creation, tags, and repetitive commit work.
-- Boilerplate project files.
-- Repetitive editor/file operations that do not teach the current lesson's core concept.
-- Verification commands, CI plumbing, and documentation formatting.
+但是每当课程出现一个**新的 Godot 核心概念**，学习者至少要完成：
 
-For each lesson's **new Godot concept**, the learner must still interact with the result. At minimum the learner will:
+1. 看见这个 Node、属性或脚本变化。
+2. 自己运行一次。
+3. 修改一个有意义的参数或一小段行为。
+4. 运行前先预测会发生什么。
+5. 在必要时用自己的话回答简短学习检查。
 
-1. See the node/script change that introduced the concept.
-2. Run the feature.
-3. Change one meaningful value or small line of behavior.
-4. Predict what should happen before running again.
-5. Answer the short learning check in their own words when useful.
+为了效率，AI 可以先写出第一版可工作的实现，但必须解释最重要的代码路径，并留下一个具体的小改动让学习者亲自完成或判断。
 
-The assistant may write the first working implementation when speed matters, but it must explain the smallest important code path and then give the learner a concrete modification to make or reason about. Full AI rewrites that bypass understanding are not the default.
+### 4.2 v1.0 之前的文档预算
 
-### 4.2 Learning-First Documentation Budget
+在 `v1.0-first-playable` 之前，文档保持刻意精简。
 
-Before `v1.0-first-playable`, documentation is kept deliberately lean.
+正常顺序是：
 
-The normal sequence is:
+1. 先做功能。
+2. 学会并验证它。
+3. 记录最小可复现课程和 Checkpoint。
+4. 继续下一项游戏功能。
+5. 只有当文档确实解决真实学习问题时，再增加解释或排错内容。
 
-1. Build the lesson feature.
-2. Learn and verify it.
-3. Capture the minimum reproducible lesson/checkpoint.
-4. Continue to the next gameplay feature.
-5. Polish public-facing teaching material only when it fixes a real learning problem or after the primary path is stable.
+规则：
 
-Rules:
+- 功能还没做出来时，不提前写很长的未来课程。
+- 文字能说清楚时，不为了“看起来像课程”强行做截图和图解。
+- `concepts/` 在概念第一次真正出现时再补。
+- `troubleshooting/` 优先记录维护者自己真实踩过的坑，再整理成通用答案。
+- 不因为公开展示效果而推迟下一个可玩的里程碑。
 
-- Do not write detailed future lessons before their feature exists.
-- Do not create screenshots or diagrams unless text is insufficient for the actual learner.
-- Concept pages are created when a concept is first encountered, not in advance as an encyclopedia.
-- Troubleshooting pages are created from real failures encountered during the primary learning path, then generalized for others.
-- Public teaching polish must not delay the next playable milestone merely for completeness or appearance.
+## 5. v1.0 游戏范围
 
-## 5. Product Scope
+第一个完整学习作品是一个极简 2D Survivor-like，包含：
 
-The first complete learning product is a minimal 2D Survivor-like with:
+- WASD / 方向键移动。
+- 敌人生成与追踪。
+- 自动攻击。
+- 伤害、生命值和死亡。
+- 敌人掉落经验。
+- 玩家拾取经验。
+- 升级三选一。
+- 在真正需要时引入 `Resource` 管理武器/升级数据。
+- HUD 与局内计时。
+- Game Over 与重新开始。
+- 基础打击反馈、音效和简单特效。
+- Windows 导出。
+- 基础 Git/GitHub 工作流。
+- 游戏已经可玩以后，再加入 GitHub Actions 自动验证。
 
-- WASD / arrow-key movement.
-- Enemy spawning and pursuit.
-- Automatic attacks.
-- Damage, health, and death.
-- XP drops and pickup.
-- Level-up choices.
-- A small weapon/data system using `Resource` only after the need becomes obvious.
-- HUD and game timer.
-- Game-over and restart loop.
-- Basic game feel: hit feedback, sound, simple effects.
-- Windows export.
-- Basic Git/GitHub workflow.
-- Basic GitHub Actions validation after the game is already playable.
+v1.0 明确不包含：
 
-The first learning product explicitly excludes:
+- 联机。
+- 手机端导出。
+- Steam 集成。
+- 存档系统。
+- ECS。
+- 复杂状态机。
+- 插件架构。
+- C# 教学路线。
+- 完整商业美术流程。
+- 大型技能树。
+- GitHub Pages 教学网站。
+- 英文课程版本。
 
-- Multiplayer.
-- Mobile export.
-- Steam integration.
-- Save systems.
-- ECS.
-- Complex state machines.
-- Plugin architecture.
-- C# track.
-- Full commercial art pipeline.
-- Large skill trees.
-- GitHub Pages documentation site.
-- English localization of the course.
+这些都可以成为未来扩展，但不能阻塞第一条学习路线。
 
-These may be future extensions, but none may block v1 learning completion.
+## 6. 文档三层结构
 
-## 6. Teaching Architecture
+### 6.1 主线课程：`docs/lessons/`
 
-The repository has three documentation layers.
+这是新手唯一必须从头走到尾的路径。
 
-### 6.1 Mainline lessons
+理想状态是：即使完全不看其他文档目录，也可以完成整个小游戏。
 
-Path: `docs/lessons/`
+### 6.2 概念手册：`docs/concepts/`
 
-Purpose: the only path a beginner must follow from start to finish.
+用于解释已经在主线课程里遇到的概念，例如：
 
-A learner should be able to ignore every other documentation folder and still complete the game.
+- Scene 与 Node。
+- `_process()` 与 `_physics_process()`。
+- Input Action。
+- Collision Layer / Mask。
+- Signal。
+- `PackedScene` 与 `instantiate()`。
+- Timer。
+- Resource。
+- Autoload。
 
-### 6.2 Concept notes
+主线只讲“当前够用的解释”，需要深入时再链接到概念手册。
 
-Path: `docs/concepts/`
+### 6.3 排错手册：`docs/troubleshooting/`
 
-Purpose: deeper explanations of Godot concepts encountered in lessons, for example:
+按照新手看到的**症状**组织，而不是按照引擎术语组织，例如：
 
-- Scene and Node.
-- `_process` vs `_physics_process`.
-- Input actions.
-- Collision layers and masks.
-- Signals.
-- PackedScene and `instantiate()`.
-- Timer.
-- Resource.
-- Autoload.
+- 按 WASD 人物完全不动。
+- 碰撞没有任何反应。
+- `Area2D` 信号不触发。
+- 实例化出来的场景看不见。
+- 出现 `null instance`。
+- 像素图片发糊。
+- 场景路径加载失败。
 
-Mainline lessons link here only as optional depth. A concept note must never become a prerequisite unless the lesson explicitly says so.
+用户不需要先知道错误叫什么，也应该能找到解决入口。
 
-### 6.3 Troubleshooting notes
+## 7. 每课统一模板
 
-Path: `docs/troubleshooting/`
+每个 `docs/lessons/*.md` 都采用统一结构：
 
-Purpose: solve common beginner blockers with symptom-first navigation.
+1. **本课目标**——一句话说明这 20～45 分钟要做出什么。
+2. **完成效果**——做完以后应该看到或听到什么。
+3. **本课只学这些**——通常最多三个核心概念。
+4. **开始前检查**——上一课 Checkpoint 和所需文件。
+5. **动手做**——Godot 编辑器操作和最小代码，分小步执行。
+6. **代码说人话**——先解释意图，再解释术语。
+7. **运行检查**——明确成功标准。
+8. **如果失败**——3～5 个最高概率错误和排错入口。
+9. **小实验**——修改一个值或行为，先预测再运行。
+10. **学习检查**——3～5 个能够用自己的话回答的问题。
+11. **可选挑战**——永远不作为下一课的前置条件。
+12. **Checkpoint**——对应 Git Tag 和它代表的状态。
 
-Examples:
+需要完整脚本时可以给完整脚本，但不允许扔出大段没有解释的代码让新手机械复制。
 
-- Player does not move.
-- Input action is missing.
-- Collision does not trigger.
-- Area2D signal does not fire.
-- Spawned scene is invisible.
-- `null instance` errors.
-- Pixel art looks blurry.
-- Scene path cannot be loaded.
+## 8. 面向学习的代码架构
 
-Troubleshooting pages should start from what the learner sees, not from engine terminology they may not know yet.
+项目一开始故意保持简单，只在真实问题出现时升级结构。
 
-## 7. Standard Lesson Contract
-
-Every lesson file uses the same structure:
-
-1. **本课目标** — one sentence describing the visible result.
-2. **完成效果** — what the learner should see or hear.
-3. **本课只学这些** — normally no more than three core concepts.
-4. **开始前检查** — exact prior checkpoint and required files.
-5. **动手做** — editor actions and minimal code in small steps.
-6. **代码说人话** — explain intent before terminology.
-7. **运行检查** — exact observable success criteria.
-8. **如果失败** — 3–5 likely beginner mistakes with links to troubleshooting pages.
-9. **小实验** — change one value/behavior and predict the result.
-10. **学习检查** — 3–5 short questions the learner should answer in their own words.
-11. **可选挑战** — optional, never required by the next lesson.
-12. **Checkpoint** — exact Git tag and what it represents.
-
-The lesson must show complete code when the learner needs a full file, but avoid unexplained large code dumps.
-
-## 8. Code Architecture for Learning
-
-The codebase intentionally starts simple and evolves only when a real pain point appears.
-
-Initial gameplay units:
+初始核心单元：
 
 - `Player`
 - `Enemy`
@@ -214,199 +202,214 @@ Initial gameplay units:
 - `HUD`
 - `GameManager`
 
-Rules:
+基本规则：
 
-- Prefer one clear responsibility per scene/script.
-- Avoid abstract base classes until duplication is visible and worth discussing.
-- Avoid global event buses early.
-- Introduce `Resource` only when weapon/upgrade data needs to be separated from behavior.
-- Introduce Autoload only when a persistent/global responsibility is clearly useful.
-- Refactoring itself can become a lesson when it teaches why the new structure exists.
+- 一个 Scene / Script 尽量只有一个明显职责。
+- 没有出现真实重复之前，不提前做抽象基类。
+- 初期不引入全局 EventBus。
+- 只有当武器/升级数据明显需要和行为分离时，才引入 `Resource`。
+- 只有当全局责任真实出现时，才引入 Autoload。
+- 当旧结构开始难维护时，把“为什么要重构”本身做成课程内容。
 
-This means early code is allowed to be simpler than a production architecture, as long as it is readable and does not create a dead end.
+早期代码可以比生产项目简单，但不能简单到形成死路。
 
-## 9. Git as a Teaching Mechanism
+## 9. Git 本身也是教材
 
-`main` represents the latest complete course state and must remain runnable.
+`main` 始终代表最新完整课程状态，并保持可运行。
 
-Development uses short-lived feature branches, for example:
+实际开发使用短生命周期分支，例如：
 
 - `feat/player-movement`
 - `feat/enemy-chase`
 - `feat/auto-attack`
 
-Each lesson ends with a permanent annotated checkpoint tag:
+每一课完成后创建永久 Checkpoint Tag：
 
 - `lesson-00-environment`
 - `lesson-01-first-scene`
 - `lesson-02-player-movement`
-- through `lesson-18-ci`.
+- ……
+- `lesson-18-ci`
 
-Release milestones use semantic-like tags such as:
+重要阶段再使用版本标签，例如：
 
 - `v0.1-movement`
 - `v0.5-game-loop`
 - `v1.0-first-playable`
 
-The course will teach three recovery patterns:
+课程会逐步教会三种恢复方法：
 
 ```bash
 git switch --detach lesson-04-enemy-chase
 ```
 
-Use a known-good checkpoint.
+直接查看某一课完成后的正确工程。
 
 ```bash
 git diff lesson-03-collision..lesson-04-enemy-chase
 ```
 
-See exactly what changed during a lesson.
+查看这一课到底增加或修改了什么。
 
 ```bash
 git switch main
 ```
 
-Return to the latest course state.
+回到最新学习进度。
 
-Git is therefore both version control and a learning aid.
+Git 因此既是版本控制，也是“不会把项目玩坏”的安全网。
 
-## 10. Curriculum Map
+## 10. 课程地图
 
-### Phase A — Learn Godot by Making Things Move
+### 阶段 A：先学会让东西动起来
 
-| Lesson | Visible result | Core concepts | Target time | Checkpoint |
+| 课次 | 最终效果 | 核心概念 | 目标时间 | Checkpoint |
 | --- | --- | --- | --- | --- |
-| 00 Environment | Project opens and runs locally | project.godot, editor, run project | 20 min | `lesson-00-environment` |
-| 01 First Scene | A visible character appears on screen | Scene, Node, Sprite2D | 25 min | `lesson-01-first-scene` |
-| 02 Player Movement | Character moves with WASD | CharacterBody2D, Input, velocity | 35 min | `lesson-02-player-movement` |
-| 03 Collision | Player collides with a wall | CollisionShape2D, layer, mask | 35 min | `lesson-03-collision` |
-| 04 Enemy Chase | One enemy follows the player | Vector2 direction, script reference, physics movement | 35 min | `lesson-04-enemy-chase` |
-| 05 Enemy Spawning | Enemies appear repeatedly | PackedScene, instantiate, Timer | 40 min | `lesson-05-enemy-spawning` |
+| 00 环境与项目 | 工程可以正常打开并运行 | `project.godot`、编辑器、运行项目 | 20 分钟 | `lesson-00-environment` |
+| 01 第一个 Scene | 屏幕上出现可见角色 | Scene、Node、Sprite2D | 25 分钟 | `lesson-01-first-scene` |
+| 02 玩家移动 | WASD 控制角色移动 | CharacterBody2D、Input、velocity | 35 分钟 | `lesson-02-player-movement` |
+| 03 第一次碰撞 | 玩家被墙挡住 | CollisionShape2D、Layer、Mask | 35 分钟 | `lesson-03-collision` |
+| 04 敌人追踪 | 一个敌人会主动追玩家 | Vector2 方向、节点引用、物理移动 | 35 分钟 | `lesson-04-enemy-chase` |
+| 05 不断刷怪 | 敌人按照时间持续出现 | PackedScene、instantiate、Timer | 40 分钟 | `lesson-05-enemy-spawning` |
 
-### Phase B — Build the Core Survivor Loop
+### 阶段 B：做出 Survivor 核心循环
 
-| Lesson | Visible result | Core concepts | Target time | Checkpoint |
+| 课次 | 最终效果 | 核心概念 | 目标时间 | Checkpoint |
 | --- | --- | --- | --- | --- |
-| 06 Auto Attack | Player fires automatically | Timer, projectile scene, direction | 40 min | `lesson-06-auto-attack` |
-| 07 Damage and Death | Enemies take damage and disappear | Area2D, signal, health | 40 min | `lesson-07-damage-death` |
-| 08 XP Drops | Dead enemies drop XP gems | scene composition, signal flow, spawn-on-death | 35 min | `lesson-08-xp-drop` |
-| 09 XP Pickup | Player collects XP | Area2D, groups, counters | 35 min | `lesson-09-xp-pickup` |
-| 10 Level Up | Level-up pauses action and shows choices | UI Control, pause, signal | 45 min | `lesson-10-level-up` |
-| 11 Upgrade Data | A chosen upgrade changes combat | Resource, exported data, separation of data/behavior | 45 min | `lesson-11-upgrade-data` |
+| 06 自动攻击 | 玩家自动发射攻击 | Timer、Projectile Scene、方向 | 40 分钟 | `lesson-06-auto-attack` |
+| 07 伤害与死亡 | 敌人受伤并死亡消失 | Area2D、Signal、Health | 40 分钟 | `lesson-07-damage-death` |
+| 08 掉落经验 | 敌人死亡后掉经验球 | Scene 组合、Signal 流程、死亡生成 | 35 分钟 | `lesson-08-xp-drop` |
+| 09 拾取经验 | 玩家靠近经验球即可获得经验 | Area2D、Group、计数 | 35 分钟 | `lesson-09-xp-pickup` |
+| 10 升级三选一 | 升级时暂停游戏并出现选择 | Control、暂停、Signal | 45 分钟 | `lesson-10-level-up` |
+| 11 升级数据化 | 选择升级后真正改变战斗能力 | Resource、export 数据、数据与行为分离 | 45 分钟 | `lesson-11-upgrade-data` |
 
-### Phase C — Make It Feel Like a Game
+### 阶段 C：从“能跑”变成“像游戏”
 
-| Lesson | Visible result | Core concepts | Target time | Checkpoint |
+| 课次 | 最终效果 | 核心概念 | 目标时间 | Checkpoint |
 | --- | --- | --- | --- | --- |
-| 12 HUD | HP, level, XP, and timer are visible | Control, ProgressBar, labels | 40 min | `lesson-12-hud` |
-| 13 Game Manager | Round state is coordinated cleanly | Autoload, responsibility, signals | 40 min | `lesson-13-game-manager` |
-| 14 Death and Restart | Player can lose and immediately retry | game state, reload scene, UI flow | 35 min | `lesson-14-restart-loop` |
-| 15 Game Feel | Hits feel responsive | audio, hit flash, simple screen feedback | 45 min | `lesson-15-game-feel` |
+| 12 HUD | HP、等级、经验和时间可见 | Control、ProgressBar、Label | 40 分钟 | `lesson-12-hud` |
+| 13 GameManager | 局内状态开始集中协调 | Autoload、职责、Signal | 40 分钟 | `lesson-13-game-manager` |
+| 14 死亡与重开 | 玩家死亡后可以立即重新开始 | 游戏状态、Reload Scene、UI 流程 | 35 分钟 | `lesson-14-restart-loop` |
+| 15 游戏手感 | 攻击开始有声音和反馈 | Audio、Hit Flash、基础屏幕反馈 | 45 分钟 | `lesson-15-game-feel` |
 
-### Phase D — Learn to Ship
+### 阶段 D：学会把作品交付出去
 
-| Lesson | Visible result | Core concepts | Target time | Checkpoint |
+| 课次 | 最终效果 | 核心概念 | 目标时间 | Checkpoint |
 | --- | --- | --- | --- | --- |
-| 16 Export | A standalone Windows build runs | export preset, build output, sanity check | 30 min | `lesson-16-windows-export` |
-| 17 Git/GitHub | Learner can branch, commit, diff, and recover | branch, commit, tag, diff | 35 min | `lesson-17-git-workflow` |
-| 18 CI | GitHub validates the Godot project automatically | Actions, headless check, workflow result | 40 min | `lesson-18-ci` |
+| 16 导出 Windows EXE | 独立 EXE 可以运行 | Export Preset、输出目录、运行检查 | 30 分钟 | `lesson-16-windows-export` |
+| 17 Git/GitHub 实战 | 能自己提交、分支、对比和恢复 | Branch、Commit、Tag、Diff | 35 分钟 | `lesson-17-git-workflow` |
+| 18 GitHub Actions | GitHub 自动验证 Godot 项目 | Actions、Headless Check、Workflow | 40 分钟 | `lesson-18-ci` |
 
-The order is intentional: Git is used throughout the project, but the formal Git lesson comes late so tooling theory does not delay early gameplay learning. Short Git commands needed earlier are taught just-in-time.
+Git 从一开始就在后台使用，但正式讲 Git 放到后面；前期只在真正需要时给出最少命令，避免工具理论抢走游戏开发注意力。
 
-## 11. Lesson Progression Rules
+## 11. 新增课程的判断标准
 
-Before adding a lesson, verify:
+任何新课程加入之前都要检查：
 
-- It has one dominant visible outcome.
-- It introduces no more theory than the outcome requires.
-- The next lesson does not depend on optional challenges.
-- The checkpoint project runs independently.
-- Required assets already exist locally.
-- The lesson can be completed without browsing external tutorials.
+- 是否只有一个主导性的可见成果。
+- 是否只讲实现这个成果真正需要的理论。
+- 下一课是否完全不依赖“可选挑战”。
+- Checkpoint 是否可以独立运行。
+- 所需素材是否已经在仓库。
+- 不查外部教程能不能完成。
 
-A lesson that violates these rules must be split or simplified.
+违反这些条件就拆课或简化。
 
-## 12. Asset Policy
+## 12. 素材策略
 
-The learning build uses bundled, license-safe starter assets so art search never interrupts learning.
+学习版直接附带许可清晰的素材，避免找素材打断学习。
 
-Current source:
+当前使用：
 
-- Kenney Roguelike Characters — CC0.
-- Kenney Tiny Dungeon — CC0.
-- Kenney Interface Sounds — CC0.
+- Kenney Roguelike Characters——CC0。
+- Kenney Tiny Dungeon——CC0。
+- Kenney Interface Sounds——CC0。
 
-Third-party assets remain under `assets/third_party/` and retain their own license files.
+第三方素材统一放在 `assets/third_party/`，保留原始许可证文件。
 
-Art direction may be improved later, but no lesson may be blocked by unfinished custom art.
+以后可以升级美术，但自制美术永远不能成为主线课程阻塞项。
 
-## 13. Documentation Style
+## 13. 中文文档规范
 
-Chinese is the primary course language for v1.
+v1 全部以**中文教学**为主。
 
-Writing rules:
+规则：
 
-- Explain intent before jargon.
-- Prefer short paragraphs and concrete examples.
-- Use the exact Godot editor labels visible in version 4.7.2.
-- When introducing terminology, immediately connect it to the gameplay result.
-- Avoid pretending a simplified explanation is the full truth; mark deeper details as optional.
-- Do not require a learner to copy more code than they can reasonably understand in that lesson.
-- Prefer screenshots only when editor location or visual state is genuinely hard to describe in text.
+- 解释目的，再出现术语。
+- 句子尽量短，用具体例子。
+- Godot 编辑器菜单、Node 类型、属性名、GDScript API 保留官方英文名称，必要时在第一次出现时给中文解释。
+- 不强行翻译 `CharacterBody2D`、`Area2D`、`Signal`、`Resource` 等官方标识。
+- 代码变量优先使用清楚的英文命名，正文解释使用中文。
+- 简化解释时说明“当前先这样理解”，不要把近似说法包装成完整原理。
+- 截图只在“编辑器里到底点哪里”确实难靠文字说清时使用。
 
-## 14. Validation Strategy
+## 14. 验证策略
 
-Every lesson checkpoint must pass three levels of validation.
+每一个课程 Checkpoint 都至少经过三层验证。
 
-### Level 1 — Engine load
+### Level 1：Godot 引擎加载
 
-Godot 4.7.2 must load the project headlessly with exit code 0.
+使用 Godot 4.7.2 Headless 加载工程，必须退出码为 0。
 
-### Level 2 — Lesson-specific sanity check
+### Level 2：本课功能检查
 
-The lesson defines an observable success condition, for example:
+每课写清楚可观察成功条件，例如：
 
-- player position changes after movement input,
-- enemy scene instantiates,
-- projectile collision emits the expected signal,
-- restart returns to a clean game state.
+- 输入后玩家位置发生变化。
+- Enemy Scene 成功实例化。
+- Projectile 碰撞时触发预期 Signal。
+- Restart 后回到干净游戏状态。
 
-Where practical, logic is extracted into small testable functions. The project will not add a heavy testing framework before it produces learning value.
+适合自动测试的逻辑尽量拆成小函数，但在还没有明显收益之前不引入重量级测试框架。
 
-### Level 3 — Human beginner check
+### Level 3：真实新手流程检查
 
-The maintainer follows the lesson as written from the previous checkpoint. If instructions require unstated knowledge, missing files, or external searching, the lesson is not complete.
+维护者从上一课 Checkpoint 出发，按照这一课文档亲自走一遍。
 
-The primary learner's own experience is the first usability test before optimizing for strangers.
+如果出现：
 
-## 15. Error and Recovery Design
+- 文档默认了没有讲过的知识；
+- 缺文件；
+- 必须临时上网搜索；
+- 按步骤无法复现；
 
-The project treats learner recovery as a first-class feature.
+那么这一课就还没有完成。
 
-For each lesson:
+维护者自己的学习体验就是公开课程发布前的第一轮用户测试。
 
-- The previous checkpoint is named explicitly.
-- The finished checkpoint is named explicitly.
-- Common failure symptoms are documented.
-- Broken local work can be compared with the finished checkpoint using Git.
-- No lesson should require deleting the whole project and starting over.
+## 15. 错误恢复设计
 
-Troubleshooting documentation is added when a real blocker appears during the primary learning path, then generalized for other beginners.
+任何一课都不能让新手产生“写坏了只能整个项目重来”的感觉。
 
-## 16. Open-Source Policy
+因此每课必须明确：
 
-The repository becomes public after the initial public baseline is coherent: README, license boundaries, and Lesson 00–01 are present and understandable. It does **not** wait for the whole course to be finished.
+- 上一课 Checkpoint。
+- 本课完成 Checkpoint。
+- 最常见错误症状。
+- 如何用 Git 对比自己的工程和正确版本。
 
-Licensing is explicit:
+真实踩到一个值得记录的问题，就在 `docs/troubleshooting/` 增加一条，然后整理成其他新手也能理解的形式。
 
-- Project source code: **MIT License** in root `LICENSE`.
-- Original teaching documentation: **CC BY 4.0** in `docs/LICENSE`.
-- Kenney assets: retain **CC0** terms from the bundled source licenses.
-- Root `LICENSES.md` explains which files fall under which license.
+## 16. 开源策略与许可证
 
-Community features such as Discussions, Good First Issues, broad issue templates, and GitHub Pages remain deferred until the main learning path is usable.
+仓库不会等 18 课全部完成才公开。
 
-## 17. Repository Structure Target
+公开最低条件：
+
+- README 已经能让陌生人理解项目是什么。
+- License 边界明确。
+- Lesson 00、Lesson 01 足够完整，可以让陌生人真正开始。
+
+许可证规划：
+
+- 项目代码：根目录 `LICENSE`，采用 **MIT License**。
+- 原创中文教学文档：`docs/LICENSE`，采用 **CC BY 4.0**。
+- Kenney 素材：继续按照素材自带 **CC0** 许可证。
+- 根目录 `LICENSES.md` 明确解释不同内容分别适用哪个 License。
+
+Discussions、Good First Issue、复杂 Issue Template、GitHub Pages 等社区功能推迟到主线课程真正可用以后。
+
+## 17. 目标仓库结构
 
 ```text
 godot-survivor-lab/
@@ -435,37 +438,38 @@ godot-survivor-lab/
 └── project.godot
 ```
 
-Directories are created only when their first real file is needed; empty architecture is avoided.
+只在真正出现第一份文件时创建目录，不为了“架构看起来完整”制造大量空目录。
 
-## 18. Definition of Success
+## 18. 成功标准
 
-### Primary success
+### 第一成功标准：维护者真正快速上手
 
-The maintainer can move from current bootstrap state to `v1.0-first-playable` while:
+从当前 Bootstrap 状态走到 `v1.0-first-playable` 后，维护者应该能够：
 
-- understanding why each major node/script exists,
-- being able to modify small gameplay behaviors without asking for full rewrites,
-- being able to diagnose basic Godot errors,
-- using Git confidently enough to experiment without fear of breaking the project,
-- producing a standalone playable Windows build.
+- 说清楚主要 Node / Script 为什么存在。
+- 不依赖 AI 全量重写，也能自己修改小型玩法逻辑。
+- 能排查常见 Godot 错误。
+- 会用 Git 放心做实验，不怕把项目改坏。
+- 能自己导出一个可玩的 Windows 版本。
 
-### Secondary success
+### 第二成功标准：陌生新手也能沿着同一路线完成
 
-After the primary path has been completed and corrected from real experience, a fresh beginner can clone the repository, start at Lesson 00, and reach the same playable result without needing an external tutorial.
+第一条路线由维护者亲自完成、修正后，再让一个全新的初学者从 Lesson 00 开始。
 
-The secondary success metric must never cause the project to slow down the primary learning loop prematurely.
+如果他不需要额外教程，就能走到同样的可玩版本，说明开源教学目标成立。
 
-## 19. Implementation Order After Approval
+第二目标永远不能反过来拖慢第一目标。
 
-Once this design is approved, implementation proceeds in this order:
+## 19. 设计确认后的实施顺序
 
-1. Rework README into a learning-first course landing page.
-2. Add `LICENSE`, `docs/LICENSE`, and clear third-party license boundaries.
-3. Create `docs/lessons/00-environment.md` and its checkpoint.
-4. Create `docs/lessons/01-first-scene.md` and its checkpoint.
-5. Make the repository public once those baseline materials are coherent.
-6. Start Lesson 02 player movement as the first meaningful gameplay feature.
-7. Continue one lesson at a time; after each lesson, run validation, capture the minimum useful lesson/checkpoint, and move on.
-8. Defer broad public-facing polish until the maintainer's own learning path reveals what actually needs explanation.
+设计确认后，按照以下顺序执行：
 
-This order deliberately prevents public-facing polish from delaying the maintainer's actual Godot learning.
+1. 把 README 改成“学习优先”的中文项目首页。
+2. 增加 MIT / CC BY 4.0 / CC0 的许可证边界说明。
+3. 完成 `docs/lessons/00-environment.md` 和对应 Checkpoint。
+4. 完成 `docs/lessons/01-first-scene.md` 和对应 Checkpoint。
+5. 进入 Lesson 02，真正开始实现玩家移动。
+6. 后续每次只推进一课：实现 → 运行验证 → 学习实验 → 最小文档 → Commit / Tag。
+7. README、许可证和前两课能够让陌生人理解并开始学习后，再把仓库改为 Public。
+
+这个顺序确保“对外教学”建立在真实学习过程之上，而不是先把项目包装成教程，再慢慢补内容。
