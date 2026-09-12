@@ -8,6 +8,7 @@
 
 - 完全没用过 Godot：从 [Lesson 00：准备环境](docs/lessons/00-environment.md) 开始。
 - 已经能打开并运行项目：进入 [Lesson 01：第一个 Scene](docs/lessons/01-first-scene.md)。
+- 已理解 Scene / Node：进入 [Lesson 02：玩家移动](docs/lessons/02-player-movement.md)。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
 ## 学习原则
@@ -55,4 +56,4 @@
 
 ## 当前进度
 
-Lesson 01 已完成：已经理解 Scene / Node / Sprite2D，并把可复用的 Player Scene 放进主场景。下一步是 Lesson 02：WASD 玩家移动。
+Lesson 02 已完成：Player 已支持 WASD / 方向键八方向移动。下一步是 Lesson 03：碰撞。

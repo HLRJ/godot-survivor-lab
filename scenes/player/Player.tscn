@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://pcacrpvjtf7y"]
 
 [ext_resource type="Texture2D" uid="uid://cflgeq3rsbcah" path="res://assets/third_party/kenney/roguelike-characters/Spritesheet/roguelikeChar_transparent.png" id="1_player_sheet"]
+[ext_resource type="Script" uid="uid://cvqqpkd8c7ipt" path="res://scripts/player/player.gd" id="2_player_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_player"]
 atlas = ExtResource("1_player_sheet")
 region = Rect2(1, 1, 16, 16)
 
-[node name="Player" type="Node2D" unique_id=1987229293]
+[node name="Player" type="CharacterBody2D" unique_id=1987229293]
+script = ExtResource("2_player_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=445899290]
 scale = Vector2(4, 4)
