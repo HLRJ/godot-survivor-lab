@@ -6,7 +6,7 @@
 
 ## 从这里开始
 
-- 完全没用过 Godot：从 Lesson 00 开始。
+- 完全没用过 Godot：从 [Lesson 00：准备环境](docs/lessons/00-environment.md) 开始。
 - 已经能打开并运行项目：进入 Lesson 01。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
