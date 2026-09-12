@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** 在不拖慢个人学习的前提下，把现有 Godot 工程整理成中文学习型开源仓库，完成 Lesson 00、Lesson 01 两个可恢复 Checkpoint，并在公开前完成敏感信息与可运行性检查。
+**Goal:** 在不拖慢个人学习的前提下，把现有 Godot 工程整理成中文学习型开源仓库基线，完成 Lesson 00、Lesson 01 两个可恢复 Checkpoint，并达到“可安全公开”的状态。
 
-**Architecture:** 保持当前 Godot 工程简单可运行，教学内容围绕实际工程增量生成。`README.md` 只做课程入口，`docs/lessons/` 承载主线，`docs/concepts/` 只在概念首次出现时补充；Lesson 01 新增最小 `Player.tscn`，不写移动脚本，把 `CharacterBody2D` 留给 Lesson 02。
+**Architecture:** 保持当前 Godot 工程简单可运行，教学内容只围绕已经实际完成的工程增量生成。`README.md` 只做课程入口，`docs/lessons/` 承载主线，`docs/concepts/` 只在概念首次出现时补充；Lesson 01 新增最小 `Player.tscn`，不写移动脚本，把 `CharacterBody2D` 留给 Lesson 02。
 
 **Tech Stack:** Godot 4.7.2 stable、GDScript、Git、GitHub、Windows PowerShell、Kenney CC0 素材。
 
@@ -19,6 +19,8 @@
 - 新 Godot 概念必须保留“看见改动 → 运行 → 修改一个值 → 先预测再运行”的学习闭环。
 - 不提前创建未来课程、百科式概念文档、GitHub Pages、复杂社区功能或重型测试框架。
 - 公开前不得包含本机绝对路径、Token、API Key、`.env`、私钥或其他个人环境信息。
+- Lesson 的 Git 提交本身就是教材的一部分；集成时必须保留每课提交，**禁止 squash Lesson 提交**。如果通过 PR 合并，使用 merge commit；如果本地合并，也使用普通 merge 保留提交身份。
+- 本计划只把仓库做到“可安全公开”。仓库可见性切换必须发生在本计划分支已经集成到 `main` 之后，作为一个独立的 bounded follow-up，避免默认分支仍是旧内容时提前公开。
 
 ---
 
@@ -69,12 +71,12 @@ README 第一屏必须直接说明：
 
 ## 从这里开始
 
-- 完全没用过 Godot：从 [Lesson 00：准备环境](docs/lessons/00-environment.md) 开始。
-- 已经能打开并运行项目：进入 [Lesson 01：第一个 Scene](docs/lessons/01-first-scene.md)。
-- 想查概念：按课程遇到的链接进入 `docs/concepts/`，不要提前背 API。
+- 完全没用过 Godot：从 Lesson 00 开始。
+- 已经能打开并运行项目：进入 Lesson 01。
+- 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 ```
 
-README 后续仅保留：学习原则、First Playable 目标、课程阶段、技术栈、许可证入口；不加入徽章墙、路线图大图或未实现功能展示。
+README 后续仅保留：学习原则、First Playable 目标、课程阶段、技术栈、许可证入口；Lesson 文件的可点击链接在对应文件创建的 Task 中再加入，避免提交死链接。
 
 - [ ] **Step 2: 添加源码 MIT License**
 
@@ -86,7 +88,7 @@ Copyright (c) 2026 HLRJ
 
 - [ ] **Step 3: 添加教学文档 CC BY 4.0 授权说明**
 
-`docs/LICENSE` 写明：`docs/` 下原创教学文档采用 Creative Commons Attribution 4.0 International（CC BY 4.0），允许复制、修改和再发布，但需要署名；第三方资料和素材按各自许可证处理。
+`docs/LICENSE` 写明：`docs/` 下原创教学文档采用 Creative Commons Attribution 4.0 International（CC BY 4.0），允许复制、修改和再发布，但需要署名；第三方资料和素材按各自许可证处理，并给出官方许可页 `https://creativecommons.org/licenses/by/4.0/`。
 
 - [ ] **Step 4: 重写 LICENSES.md 的边界说明**
 
@@ -188,13 +190,13 @@ git commit -m "docs: establish Chinese learning-first course baseline"
 
 - [ ] **Step 2: 从 README 链接 Lesson 00**
 
-确认首页“从这里开始”中的路径准确为：
+将首页“完全没用过 Godot”改成：
 
-```text
-docs/lessons/00-environment.md
+```markdown
+- 完全没用过 Godot：从 [Lesson 00：准备环境](docs/lessons/00-environment.md) 开始。
 ```
 
-- [ ] **Step 3: 从干净状态执行 Lesson 00 的技术验证**
+- [ ] **Step 3: 执行 Lesson 00 技术验证**
 
 ```powershell
 & 'D:\Program Files (x86)\Steam\steamapps\common\Godot Engine\godot.windows.opt.tools.64.exe' --headless --path . --editor --quit
@@ -210,13 +212,10 @@ Expected：Godot 退出码 `0`，`git diff --check` 无错误。
 git add README.md docs/lessons/00-environment.md
 git commit -m "docs: add lesson 00 environment walkthrough"
 git tag -a lesson-00-environment -m "Lesson 00: environment ready"
-```
-
-执行分支推送后再推 Tag：
-
-```bash
 git push origin lesson-00-environment
 ```
+
+Checkpoint Tag 指向本课独立提交；后续集成不得 squash 该提交。
 
 ---
 
@@ -257,7 +256,13 @@ scale = Vector2(4, 4)
 
 - [ ] **Step 2: 在 Main.tscn 实例化 Player**
 
-在文件顶部加入：
+将文件第一行改为：
+
+```ini
+[gd_scene load_steps=2 format=3]
+```
+
+随后加入：
 
 ```ini
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_player"]
@@ -275,8 +280,6 @@ position = Vector2(640, 360)
 ```text
 Lesson 01 - 第一个 Scene
 ```
-
-并相应把 `Main.tscn` 的 `load_steps` 设置为正确值。
 
 - [ ] **Step 3: 先验证资源和 Scene 能被 Godot 加载**
 
@@ -322,9 +325,15 @@ Expected：退出码 `0`，无 missing resource / parse error。
 
 Checkpoint 写为 `lesson-01-first-scene`。
 
-- [ ] **Step 7: 更新 README 当前进度**
+- [ ] **Step 7: 更新 README 当前进度和 Lesson 01 入口**
 
-将“当前进度”更新为 Lesson 01 已完成，并把下一步明确为 Lesson 02：玩家移动。
+加入：
+
+```markdown
+- 已经能打开并运行项目：进入 [Lesson 01：第一个 Scene](docs/lessons/01-first-scene.md)。
+```
+
+“当前进度”更新为 Lesson 01 已完成，下一步明确为 Lesson 02：玩家移动。
 
 - [ ] **Step 8: 验证、提交并创建 Lesson 01 Checkpoint**
 
@@ -345,16 +354,18 @@ git tag -a lesson-01-first-scene -m "Lesson 01: first reusable scene"
 git push origin lesson-01-first-scene
 ```
 
+Checkpoint Tag 指向本课独立提交；后续集成不得 squash 该提交。
+
 ---
 
-### Task 4: 公开前安全检查并切换为开源仓库
+### Task 4: 达到“可安全公开”状态
 
 **Files:**
-- No required content change unless verification exposes a concrete problem.
+- No planned content changes.
 
 **Interfaces:**
-- Consumes: 已完成 Task 1–3 的仓库状态。
-- Produces: 可公开访问、无本地敏感信息、默认分支可运行的中文教学仓库。
+- Consumes: 已完成 Task 1–3 的分支状态。
+- Produces: 通过敏感信息、Godot 可运行性、Git 干净状态检查的候选公开版本。
 
 - [ ] **Step 1: 做完整敏感信息扫描**
 
@@ -363,9 +374,9 @@ git grep -n -I -E 'G:/AINmg|G:\\AINmg|C:\\Users\\|ghp_|github_pat_|API[_-]?KEY|T
 git ls-files | Select-String -Pattern '^\.env$|\.env\.|\.pem$|\.key$|id_rsa|id_ed25519'
 ```
 
-Expected：两条命令都无输出。若有输出，先删除具体敏感内容并以 `chore: remove local-only information before public release` 提交，再重新运行扫描直到无输出。
+Expected：两条命令都无真实敏感信息命中。若第一条命中课程文档中的“扫描命令示例”本身，只核对该命中属于示例；真实凭据或真实本机路径必须为零。
 
-- [ ] **Step 2: 做公开前最终 Godot 与 Git 验证**
+- [ ] **Step 2: 做候选公开版本最终 Godot 与 Git 验证**
 
 ```powershell
 & 'D:\Program Files (x86)\Steam\steamapps\common\Godot Engine\godot.windows.opt.tools.64.exe' --headless --path . --editor --quit
@@ -378,30 +389,26 @@ Write-Output "git_status_count=$($status.Count)"
 
 Expected：`godot_exit=0`，`git_status_count=0`。
 
-- [ ] **Step 3: 验证两个 Lesson Tag 都在远端**
+- [ ] **Step 3: 验证 Lesson Checkpoint Tag 已创建**
 
 ```bash
-git ls-remote --tags origin lesson-00-environment lesson-01-first-scene
+git show --no-patch --oneline lesson-00-environment
+git show --no-patch --oneline lesson-01-first-scene
 ```
 
-Expected：两个 Tag 都有远端 SHA。
+Expected：两个 Tag 分别指向 Task 2、Task 3 的独立提交。
 
-- [ ] **Step 4: 将仓库切换为 Public**
+- [ ] **Step 4: 输出公开就绪结论，不切换可见性**
+
+记录以下四项证据：Godot exit code、Git status count、敏感信息扫描结果、两个 Lesson Tag 对应提交。
+
+此时停止本实施计划并进入分支收尾流程。只有在该分支按用户选择集成到 `main` 后，才执行单独的公开动作：
 
 ```bash
 gh repo edit HLRJ/godot-survivor-lab --visibility public --accept-visibility-change-consequences
-```
-
-- [ ] **Step 5: 验证公开状态**
-
-```bash
 gh repo view HLRJ/godot-survivor-lab --json nameWithOwner,visibility,url,defaultBranchRef
 ```
 
-Expected：`visibility` 为 `PUBLIC`，默认分支为 `main`。
+公开后的 Expected：`visibility` 为 `PUBLIC`，默认分支为 `main`。随后在未登录 GitHub 的浏览器中验证 README、Lesson 00、Lesson 01、`LICENSE`、`LICENSES.md` 都可以访问。
 
-- [ ] **Step 6: 做陌生学习者入口检查**
-
-在浏览器未登录 GitHub 的情况下打开仓库首页，确认无需权限即可看到 README；按 README 点击 Lesson 00、Lesson 01、`LICENSE`、`LICENSES.md` 均能到达正确文件。
-
-如果以上入口全部正常，本计划完成。下一份独立计划从 `Lesson 02：玩家移动` 开始，不在本计划继续扩展。
+本计划到此结束。下一份独立计划从 `Lesson 02：玩家移动` 开始。
