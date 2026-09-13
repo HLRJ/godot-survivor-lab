@@ -57,6 +57,7 @@ Projectile 的核心代码很短：
 ```gdscript
 position += direction * speed * delta
 ```
+
 默认：
 
 ```text
