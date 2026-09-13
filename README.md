@@ -63,4 +63,4 @@
 
 ## 当前进度
 
-Lesson 07 已实现：Projectile 已能造成伤害，Enemy 会在生命值归零时死亡。完成代码级学习实验后进入 Lesson 08：经验掉落。
+Lesson 07 已完成：Projectile 已能造成伤害，Enemy 会在生命值归零时死亡。下一步是 Lesson 08：经验掉落。
