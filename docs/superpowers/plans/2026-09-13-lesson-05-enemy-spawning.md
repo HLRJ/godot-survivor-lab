@@ -47,7 +47,8 @@
 - Main 存在 `EnemySpawner`；
 - Spawner 有 `Timer`；
 - 默认 `spawn_interval` 为 `1.5`；
-- 等待约 3.2 秒后至少出现 3 个 Enemy；
+- 先确认默认间隔为 `1.5`，测试中临时把 Timer 加速到 `0.1` 秒；
+- 连续 timeout 后至少出现 3 个 Enemy；
 - 所有 Enemy 都直接挂在 Main 下，并能拿到同一个 Player 引用。
 - [ ] **Step 2: 运行并确认 RED**
 
@@ -74,7 +75,7 @@ Expected: exit 1，失败原因包含 `Main must contain EnemySpawner`。
 
 - [ ] **Step 1: 写 `enemy_spawner.gd`**
 
-Spawner 在 `_ready()` 设置 Timer 间隔并立即生成第一个 Enemy；Timer 每次 timeout 再生成一个。
+Spawner 在 `_ready()` 设置 Timer 间隔并启动计时；每次 timeout 生成一个 Enemy。第一个 Enemy 也由 Timer 产生，避免在父节点仍初始化 children 时修改 Main。
 
 生成位置按固定数组循环，避免这一课同时引入随机数。
 - [ ] **Step 2: 创建 `EnemySpawner.tscn`**
