@@ -11,6 +11,7 @@
 - 已理解 Scene / Node：进入 [Lesson 02：玩家移动](docs/lessons/02-player-movement.md)。
 - 已会控制 Player 移动：进入 [Lesson 03：碰撞](docs/lessons/03-collision.md)。
 - 已理解碰撞：进入 [Lesson 04：Enemy 追踪 Player](docs/lessons/04-enemy-chase.md)。
+- 已理解 Enemy 追踪：进入 [Lesson 05：不断刷怪](docs/lessons/05-enemy-spawning.md)。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
 ## 学习原则
@@ -58,4 +59,4 @@
 
 ## 当前进度
 
-Lesson 04 已完成：Enemy 已能持续追踪 Player。下一步是 Lesson 05：不断刷怪。
+Lesson 05 已完成：EnemySpawner 已能持续生成 Enemy。下一步是 Lesson 06：自动攻击。

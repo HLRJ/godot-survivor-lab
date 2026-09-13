@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/world/TrainingWall.tscn" id="2_wall"]
-[ext_resource type="PackedScene" path="res://scenes/enemies/Enemy.tscn" id="3_enemy"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/EnemySpawner.tscn" id="3_spawner"]
 
 [node name="Main" type="Node2D"]
 
@@ -18,8 +18,7 @@ position = Vector2(640, 360)
 [node name="TrainingWall" parent="." instance=ExtResource("2_wall")]
 position = Vector2(820, 360)
 
-[node name="Enemy" parent="." instance=ExtResource("3_enemy")]
-position = Vector2(420, 520)
+[node name="EnemySpawner" parent="." instance=ExtResource("3_spawner")]
 
 [node name="Title" type="Label" parent="."]
 offset_left = 430.0
@@ -36,5 +35,5 @@ offset_top = 110.0
 offset_right = 850.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 18
-text = "Lesson 04 - Enemy 追踪 Player"
+text = "Lesson 05 - 不断刷怪"
 horizontal_alignment = 1
