@@ -13,6 +13,7 @@
 - 已理解碰撞：进入 [Lesson 04：Enemy 追踪 Player](docs/lessons/04-enemy-chase.md)。
 - 已理解 Enemy 追踪：进入 [Lesson 05：不断刷怪](docs/lessons/05-enemy-spawning.md)。
 - 已理解不断刷怪：进入 [Lesson 06：自动攻击](docs/lessons/06-auto-attack.md)。
+- 已理解自动攻击：进入 [Lesson 07：伤害与死亡](docs/lessons/07-damage-and-death.md)。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
 ## 学习原则
@@ -20,6 +21,8 @@
 - 先看到结果，再补概念。
 - 每次只引入少量新东西，优先保持项目可运行。
 - 每个新概念至少亲自运行一次、改一个值、先预测再验证。
+- 每课先说明复用了哪些前置 Lesson，再讲本课真正新增的概念。
+- 从 Lesson 07 起，每课至少亲手修改或补写一小段核心 GDScript，不只改 Inspector 参数。
 - 卡住时优先使用 Git Checkpoint 对比，而不是删项目重来。
 
 ## First Playable 目标
@@ -60,4 +63,4 @@
 
 ## 当前进度
 
-Lesson 06 已完成：Player 已能自动向最近 Enemy 发射可见 Projectile。下一步是 Lesson 07：伤害与死亡。
+Lesson 07 已完成：Projectile 已能造成伤害，Enemy 会在生命值归零时死亡。下一步是 Lesson 08：经验掉落。
