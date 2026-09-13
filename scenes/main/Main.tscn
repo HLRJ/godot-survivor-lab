@@ -35,5 +35,5 @@ offset_top = 110.0
 offset_right = 850.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 18
-text = "Lesson 05 - 不断刷怪"
+text = "Lesson 06 - 自动攻击"
 horizontal_alignment = 1
