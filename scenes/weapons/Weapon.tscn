@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/weapons/Projectile.tscn" id="1_projectile"]
+[ext_resource type="Script" path="res://scripts/weapons/weapon.gd" id="2_script"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("2_script")
+projectile_scene = ExtResource("1_projectile")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8

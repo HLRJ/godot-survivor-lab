@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cflgeq3rsbcah" path="res://assets/third_party/kenney/roguelike-characters/Spritesheet/roguelikeChar_transparent.png" id="1_player_sheet"]
 [ext_resource type="Script" uid="uid://cvqqpkd8c7ipt" path="res://scripts/player/player.gd" id="2_player_script"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/Weapon.tscn" id="3_weapon"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_player"]
 atlas = ExtResource("1_player_sheet")
@@ -19,3 +20,5 @@ texture = SubResource("AtlasTexture_player")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1035767444]
 shape = SubResource("RectangleShape2D_player")
+
+[node name="Weapon" parent="." instance=ExtResource("3_weapon")]
