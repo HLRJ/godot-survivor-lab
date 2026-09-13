@@ -25,6 +25,7 @@ Player
 ```
 
 Weapon 是 Player 的子节点，所以 Player 移动时 Weapon 会一起移动。
+
 ## Weapon 做了什么
 
 Weapon 默认：
@@ -87,6 +88,7 @@ Projectile Speed       -> 每一发飞多快
 ```
 
 这两个参数控制的是完全不同的东西。
+
 ## 你的亲手实验
 
 这一步不要交给自动化。
@@ -116,6 +118,7 @@ Projectile Speed       -> 每一发飞多快
 见：
 
 [Projectile 与自动攻击：谁负责发射，谁负责飞](../concepts/projectile-and-auto-attack.md)
+
 ## Checkpoint
 
 完成实验并把 Projectile Speed 恢复为 `520` 后，对应 Git Tag：

@@ -60,4 +60,4 @@
 
 ## 当前进度
 
-Lesson 06 已实现：Player 已能自动向最近 Enemy 发射 Projectile。完成亲手实验后进入 Lesson 07：伤害与死亡。
+Lesson 06 已完成：Player 已能自动向最近 Enemy 发射可见 Projectile。下一步是 Lesson 07：伤害与死亡。
