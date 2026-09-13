@@ -32,6 +32,7 @@ Main
 EnemySpawner (Node)
 └── Timer
 ```
+
 Spawner 的核心代码是：
 
 ```gdscript
@@ -115,6 +116,7 @@ Spawn Interval = 1.5 秒
 ```
 
 运行后要稍等大约 1.5 秒，第一只 Enemy 才会出现；之后按同样间隔继续生成。
+
 ## 运行检查
 
 按 `F5` 运行项目。

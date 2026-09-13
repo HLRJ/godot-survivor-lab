@@ -29,6 +29,7 @@ var enemy := enemy_scene.instantiate()
 可以读成：
 
 > 按这个 Enemy 模板，做出一个新的 Enemy Node。
+
 同一个 `PackedScene` 可以反复 `instantiate()`：
 
 ```text
@@ -61,6 +62,7 @@ get_node("../Player")
 ```
 
 因此 Enemy 必须先回到 Main，才能找到同级的 Player。
+
 ## 4. Timer 只负责“什么时候再做一次”
 
 Spawner 里有一个 `Timer`：
