@@ -15,6 +15,7 @@
 - 已理解不断刷怪：进入 [Lesson 06：自动攻击](docs/lessons/06-auto-attack.md)。
 - 已理解自动攻击：进入 [Lesson 07：伤害与死亡](docs/lessons/07-damage-and-death.md)。
 - 已理解伤害与死亡：进入 [Lesson 08：经验掉落](docs/lessons/08-xp-drop.md)。
+- 已理解经验掉落：进入 [Lesson 09：拾取经验](docs/lessons/09-xp-pickup.md)。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
 ## 学习原则
@@ -64,4 +65,4 @@
 
 ## 当前进度
 
-Lesson 08 已完成：Enemy 死亡会通过自定义 Signal 通知 EnemySpawner，并在死亡位置生成 ExperienceGem。下一步是 Lesson 09：拾取经验。
+Lesson 09 已完成：Player 接触 ExperienceGem 后会获得经验，Gem 随后消失；同时学习了 Group、Area2D 拾取检测与 call_deferred() 的物理时序。下一步进入经验阈值与升级流程。
