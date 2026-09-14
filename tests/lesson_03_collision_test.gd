@@ -11,6 +11,11 @@ func _expect(condition: bool, message: String) -> void:
     failures += 1
     push_error(message)
 
+func _stop_timer(parent: Node, timer_name: StringName) -> void:
+    var timer := parent.get_node_or_null(NodePath(timer_name)) as Timer
+    if timer != null:
+        timer.stop()
+
 func _run() -> void:
     var scene := load("res://scenes/main/Main.tscn") as PackedScene
     _expect(scene != null, "Main.tscn could not be loaded")
@@ -23,12 +28,20 @@ func _run() -> void:
 
     var player := main.get_node_or_null("Player") as CharacterBody2D
     var wall := main.get_node_or_null("TrainingWall") as StaticBody2D
+    var spawner := main.get_node_or_null("EnemySpawner")
     _expect(player != null, "Main must contain Player")
     _expect(wall != null, "Main must contain TrainingWall")
+
     if player != null:
+        var weapon := player.get_node_or_null("Weapon")
+        if weapon != null:
+            _stop_timer(weapon, "Timer")
         _expect(player.get_node_or_null("CollisionShape2D") is CollisionShape2D, "Player must have CollisionShape2D")
         _expect(player.collision_layer == 1, "Player collision_layer must be 1")
         _expect(player.collision_mask == 1, "Player collision_mask must be 1")
+
+    if spawner != null:
+        _stop_timer(spawner, "Timer")
 
     if wall != null:
         _expect(wall.scene_file_path == "res://scenes/world/TrainingWall.tscn", "TrainingWall must be instantiated from reusable scene")
@@ -48,6 +61,7 @@ func _run() -> void:
 
     main.queue_free()
     await process_frame
+
     if failures == 0:
         print("PASS: Lesson 03 collision")
         quit(0)

@@ -12,34 +12,37 @@ func _expect(condition: bool, message: String) -> void:
     push_error(message)
 
 func _run() -> void:
-    var scene := load("res://scenes/main/Main.tscn") as PackedScene
-    _expect(scene != null, "Main.tscn could not be loaded")
-    if scene == null:
+    var enemy_scene := load("res://scenes/enemies/Enemy.tscn") as PackedScene
+    _expect(enemy_scene != null, "Enemy.tscn could not be loaded")
+    if enemy_scene == null:
         quit(1)
         return
 
-    var main := scene.instantiate()
-    root.add_child(main)
+    var world := Node2D.new()
+    world.name = "TestWorld"
+    root.add_child(world)
 
-    var player := main.get_node_or_null("Player") as CharacterBody2D
-    var enemy := main.get_node_or_null("Enemy") as CharacterBody2D
-    _expect(player != null, "Main must contain Player")
-    _expect(enemy != null, "Main must contain Enemy")
-    if enemy != null:
-        _expect(enemy.scene_file_path == "res://scenes/enemies/Enemy.tscn", "Enemy must come from reusable Enemy.tscn")
-        _expect(enemy.get_node_or_null("CollisionShape2D") is CollisionShape2D, "Enemy must have CollisionShape2D")
-        _expect(enemy.get_script() != null, "Enemy must have a chase script")
-        _expect(is_equal_approx(float(enemy.get("speed")), 110.0), "Enemy default speed must be 110")
+    var player := Node2D.new()
+    player.name = "Player"
+    player.position = Vector2(640, 360)
+    world.add_child(player)
 
-    if player != null and enemy != null:
+    var enemy := enemy_scene.instantiate() as CharacterBody2D
+    enemy.position = Vector2(160, 360)
+    world.add_child(enemy)
+
+    _expect(enemy.get_node_or_null("CollisionShape2D") is CollisionShape2D, "Enemy must have CollisionShape2D")
+    _expect(enemy.get_script() != null, "Enemy must have a chase script")
+    _expect(is_equal_approx(float(enemy.get("speed")), 110.0), "Enemy default speed must be 110")
+
+    await physics_frame
+    var start_distance := enemy.global_position.distance_to(player.global_position)
+    for _i in range(60):
         await physics_frame
-        var start_distance := enemy.global_position.distance_to(player.global_position)
-        for _i in range(60):
-            await physics_frame
-        var end_distance := enemy.global_position.distance_to(player.global_position)
-        _expect(end_distance < start_distance - 50.0, "Enemy should move significantly closer to Player")
+    var end_distance := enemy.global_position.distance_to(player.global_position)
+    _expect(end_distance < start_distance - 50.0, "Enemy should move significantly closer to Player")
 
-    main.queue_free()
+    world.queue_free()
     await process_frame
 
     if failures == 0:

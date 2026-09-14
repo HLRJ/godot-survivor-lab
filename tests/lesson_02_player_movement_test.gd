@@ -11,6 +11,11 @@ func _expect(condition: bool, message: String) -> void:
     failures += 1
     push_error(message)
 
+func _stop_timer(parent: Node, timer_name: StringName) -> void:
+    var timer := parent.get_node_or_null(NodePath(timer_name)) as Timer
+    if timer != null:
+        timer.stop()
+
 func _run() -> void:
     var required_actions := ["move_left", "move_right", "move_up", "move_down"]
     for action in required_actions:
@@ -40,6 +45,10 @@ func _run() -> void:
     root.add_child(player)
     _expect(player is CharacterBody2D, "Player root must be CharacterBody2D")
     _expect(player.get_script() != null, "Player must have a movement script")
+
+    var weapon := player.get_node_or_null("Weapon")
+    if weapon != null:
+        _stop_timer(weapon, "Timer")
 
     await physics_frame
     var start_position: Vector2 = player.position
