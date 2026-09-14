@@ -14,6 +14,7 @@
 - 已理解 Enemy 追踪：进入 [Lesson 05：不断刷怪](docs/lessons/05-enemy-spawning.md)。
 - 已理解不断刷怪：进入 [Lesson 06：自动攻击](docs/lessons/06-auto-attack.md)。
 - 已理解自动攻击：进入 [Lesson 07：伤害与死亡](docs/lessons/07-damage-and-death.md)。
+- 已理解伤害与死亡：进入 [Lesson 08：经验掉落](docs/lessons/08-xp-drop.md)。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
 ## 学习原则
@@ -63,4 +64,4 @@
 
 ## 当前进度
 
-Lesson 07 已完成：Projectile 已能造成伤害，Enemy 会在生命值归零时死亡。下一步是 Lesson 08：经验掉落。
+Lesson 08 已完成：Enemy 死亡会通过自定义 Signal 通知 EnemySpawner，并在死亡位置生成 ExperienceGem。下一步是 Lesson 09：拾取经验。
