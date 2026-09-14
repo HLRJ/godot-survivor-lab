@@ -31,6 +31,9 @@ func _spawn_enemy() -> void:
     get_parent().add_child(spawned_enemy)
 
 func _on_enemy_died(dead_enemy: Node2D) -> void:
+    call_deferred("_spawn_experience", dead_enemy.global_position)
+
+func _spawn_experience(spawn_position: Vector2) -> void:
     var experience := experience_scene.instantiate() as Node2D
-    experience.global_position = dead_enemy.global_position
     get_parent().add_child(experience)
+    experience.global_position = spawn_position
