@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/third_party/kenney/roguelike-characters/Spritesheet/roguelikeChar_transparent.png" id="1_sheet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gem"]
+atlas = ExtResource("1_sheet")
+region = Rect2(52, 1, 16, 16)
+
+[node name="ExperienceGem" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.2, 1, 0.65, 1)
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_gem")

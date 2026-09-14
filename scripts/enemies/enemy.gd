@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died(dead_enemy: Node2D)
+
 @export var speed: float = 110.0
 @export var max_health: int = 3
 var health: int
@@ -17,4 +19,5 @@ func _physics_process(_delta: float) -> void:
 func take_damage(amount: int) -> void:
 	health -= amount
 	if health <= 0:
+		died.emit(self)
 		queue_free()
