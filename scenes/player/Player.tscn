@@ -11,7 +11,7 @@ region = Rect2(1, 1, 16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(36, 44)
 
-[node name="Player" type="CharacterBody2D" unique_id=1987229293]
+[node name="Player" type="CharacterBody2D" unique_id=1987229293 groups=["player"]]
 script = ExtResource("2_player_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=445899290]

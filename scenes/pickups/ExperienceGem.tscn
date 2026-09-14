@@ -1,14 +1,24 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Texture2D" path="res://assets/third_party/kenney/roguelike-characters/Spritesheet/roguelikeChar_transparent.png" id="1_sheet"]
+[ext_resource type="Script" path="res://scripts/pickups/experience_gem.gd" id="2_script"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gem"]
 atlas = ExtResource("1_sheet")
 region = Rect2(52, 1, 16, 16)
 
-[node name="ExperienceGem" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gem"]
+radius = 14.0
+
+[node name="ExperienceGem" type="Area2D"]
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("2_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.2, 1, 0.65, 1)
 scale = Vector2(2, 2)
 texture = SubResource("AtlasTexture_gem")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gem")
