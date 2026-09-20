@@ -4,6 +4,7 @@ const ENEMY_SCENE_PATH := "res://scenes/enemies/Enemy.tscn"
 
 @export var projectile_scene: PackedScene
 @export var attack_interval: float = 0.8
+var projectile_damage: int = 1
 @onready var timer: Timer = $Timer
 
 func _ready() -> void:
@@ -19,6 +20,7 @@ func _attack() -> void:
     get_tree().current_scene.add_child(projectile)
     projectile.global_position = global_position
     projectile.set("direction", global_position.direction_to(target.global_position))
+    projectile.set("damage", projectile_damage)
 
 func _find_nearest_enemy() -> Node2D:
     var nearest: Node2D = null
@@ -34,3 +36,10 @@ func _find_nearest_enemy() -> Node2D:
             nearest = candidate
             nearest_distance = distance
     return nearest
+
+func upgrade_attack_speed() -> void:
+    attack_interval = maxf(0.2, attack_interval - 0.1)
+    timer.wait_time = attack_interval
+
+func upgrade_projectile_damage() -> void:
+    projectile_damage += 1

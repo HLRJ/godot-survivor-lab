@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://scenes/world/TrainingWall.tscn" id="2_wall"]
 [ext_resource type="PackedScene" path="res://scenes/enemies/EnemySpawner.tscn" id="3_spawner"]
+[ext_resource type="Script" path="res://scripts/main/main.gd" id="4_main_script"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LevelUpPanel.tscn" id="5_level_up_panel"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("4_main_script")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1280.0
@@ -19,6 +22,8 @@ position = Vector2(640, 360)
 position = Vector2(820, 360)
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_spawner")]
+
+[node name="LevelUpPanel" parent="." instance=ExtResource("5_level_up_panel")]
 
 [node name="Title" type="Label" parent="."]
 offset_left = 430.0
@@ -35,5 +40,5 @@ offset_top = 110.0
 offset_right = 850.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 18
-text = "Lesson 09 - 拾取经验"
+text = "Lesson 10 - 升级三选一"
 horizontal_alignment = 1
