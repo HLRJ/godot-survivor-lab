@@ -130,8 +130,9 @@ AI 可以直接处理：
 
 - 功能还没做出来时，不提前写很长的未来课程。
 - 文字能说清楚时，不为了“看起来像课程”强行做截图和图解。
-- `concepts/` 在概念第一次真正出现时再补。
+- `concepts/` 只在概念值得长期复用时补；每课设计都要检查是否存在“以后会反复用、主线讲太深会打断节奏、或真实踩过的机制”需要沉淀。
 - `troubleshooting/` 优先记录维护者自己真实踩过的坑，再整理成通用答案。
+- 不再为每个里程碑单独维护 `learning-notes/`；主线学习记录由 Lesson + Concept + Checkpoint 承担。
 - 不因为公开展示效果而推迟下一个可玩的里程碑。
 
 ## 5. v1.0 游戏范围
@@ -170,7 +171,17 @@ v1.0 明确不包含：
 
 这些都可以成为未来扩展，但不能阻塞第一条学习路线。
 
-## 6. 文档三层结构
+## 6. 文档四目录结构
+
+活跃课程文档只维护四类：
+
+```text
+docs/
+├── lessons/          主线课程，必须跟课程推进
+├── concepts/         可复用概念，按需更新
+├── troubleshooting/ 真实踩坑后按症状沉淀
+└── superpowers/      设计 spec / implementation plan
+```
 
 ### 6.1 主线课程：`docs/lessons/`
 
@@ -180,7 +191,7 @@ v1.0 明确不包含：
 
 ### 6.2 概念手册：`docs/concepts/`
 
-用于解释已经在主线课程里遇到的概念，例如：
+用于解释已经在主线课程里真实遇到、并且以后会反复复用的概念，例如：
 
 - Scene 与 Node。
 - `_process()` 与 `_physics_process()`。
@@ -193,6 +204,18 @@ v1.0 明确不包含：
 - Autoload。
 
 主线只讲“当前够用的解释”，需要深入时再链接到概念手册。
+
+每课设计都执行一次 Concept 检查：
+
+```text
+是否出现：
+1. 后续会反复复用的概念？
+2. 主线讲太深会打断节奏的知识？
+3. 真实踩过、值得独立解释的机制？
+
+有 → 新建或更新 docs/concepts/
+无 → 不为了目录整齐机械新增
+```
 
 ### 6.3 排错手册：`docs/troubleshooting/`
 
@@ -207,6 +230,16 @@ v1.0 明确不包含：
 - 场景路径加载失败。
 
 用户不需要先知道错误叫什么，也应该能找到解决入口。
+
+### 6.4 设计与实施文档：`docs/superpowers/`
+
+只保存课程设计 spec、实施计划和必要的工程决策记录，不承担学习主线内容。
+
+### 6.5 `docs/learning-notes/` 退役
+
+`learning-notes/` 是项目早期在完整 Lesson 体系建立之前使用的旧结构，不再继续扩展。
+
+后续不再创建“每个 milestone 一篇 learning note”的重复文档。已有 `00-bootstrap.md` 在确认独有信息已经被 Lesson 00 / Lesson 01 / Concept 覆盖后可以删除；历史 Git 提交仍然保留其演进记录。
 
 ## 7. 每课统一模板
 
@@ -322,8 +355,8 @@ Git 因此既是版本控制，也是“不会把项目玩坏”的安全网。
 | 07 伤害与死亡 | 敌人受伤并死亡消失 | Area2D、Signal、Health | 40 分钟 | `lesson-07-damage-and-death` |
 | 08 掉落经验 | 敌人死亡后掉经验球 | Scene 组合、Signal 流程、死亡生成 | 35 分钟 | `lesson-08-xp-drop` |
 | 09 拾取经验 | 玩家靠近经验球即可获得经验 | Area2D、Group、计数 | 35 分钟 | `lesson-09-xp-pickup` |
-| 10 升级三选一 | 升级时暂停游戏并出现选择 | Control、暂停、Signal | 45 分钟 | `lesson-10-level-up` |
-| 11 升级数据化 | 选择升级后真正改变战斗能力 | Resource、export 数据、数据与行为分离 | 45 分钟 | `lesson-11-upgrade-data` |
+| 10 升级三选一 | 升级时暂停游戏并出现选择，三个强化真实生效 | Control、暂停、Signal、状态归属 | 45 分钟 | `lesson-10-level-up-choice` |
+| 11 升级数据化 | 只改 `.tres` 即可同时改变升级显示与实际数值 | Resource、`class_name`、export 数据、数据与行为分离 | 45 分钟 | `lesson-11-upgrade-data` |
 
 ### 阶段 C：从“能跑”变成“像游戏”
 
@@ -470,7 +503,6 @@ godot-survivor-lab/
 │   ├── lessons/
 │   ├── concepts/
 │   ├── troubleshooting/
-│   ├── learning-notes/
 │   └── superpowers/
 ├── .github/
 │   └── workflows/
