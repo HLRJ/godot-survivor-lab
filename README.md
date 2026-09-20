@@ -16,6 +16,7 @@
 - 已理解自动攻击：进入 [Lesson 07：伤害与死亡](docs/lessons/07-damage-and-death.md)。
 - 已理解伤害与死亡：进入 [Lesson 08：经验掉落](docs/lessons/08-xp-drop.md)。
 - 已理解经验掉落：进入 [Lesson 09：拾取经验](docs/lessons/09-xp-pickup.md)。
+- 已理解经验拾取：进入 [Lesson 10：升级三选一](docs/lessons/10-level-up-choice.md)。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
 ## 学习原则
@@ -65,4 +66,4 @@
 
 ## 当前进度
 
-Lesson 09 已完成：Player 接触 ExperienceGem 后会获得经验，Gem 随后消失；同时学习了 Group、Area2D 拾取检测与 call_deferred() 的物理时序。下一步进入经验阈值与升级流程。
+Lesson 10 已完成：经验达到阈值后会触发升级，战斗暂停并显示三选一；选择移动速度、攻击速度或 Projectile 伤害后，强化真实生效并恢复战斗。同时进一步理解了 Signal 的 connect/emit、Timer、SceneTree 暂停、运行时状态归属与 Main 协调层。
