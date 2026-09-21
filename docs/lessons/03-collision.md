@@ -10,6 +10,14 @@ Player 会移动以后马上出现真实问题：**如果什么都能穿过去�
 
 墙体、地形、Hitbox/Hurtbox、触发区域、子弹命中、拾取物、机关和传送门都依赖碰撞层与 Mask。复杂游戏里，合理规划碰撞层能显著降低误触发和耦合。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/03-collision.md`
+- **开始代码：** `lesson-02-player-movement`
+- **完成参考：** `lesson-03-collision`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 给会移动的 Player 加上真正的碰撞体，并放一面不会移动的训练墙。

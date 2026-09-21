@@ -10,6 +10,14 @@
 
 金币掉落、装备 Loot、任务物品、死亡特效、经验、积分、尸体和宝箱都属于同一模式：**某个事件发生 → 生成或派发新的结果对象**。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/08-xp-drop.md`
+- **开始代码：** `lesson-07-damage-and-death`
+- **完成参考：** `lesson-08-xp-drop`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 把 Lesson 07 的“Enemy 会死亡”继续向前推进一步：Enemy 死亡时主动发出自定义 Signal，EnemySpawner 接收这个事件，并在死亡位置生成 ExperienceGem。

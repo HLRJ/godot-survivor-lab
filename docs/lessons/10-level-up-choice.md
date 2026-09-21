@@ -10,6 +10,14 @@ Player 已经能获得 XP，但 XP 如果永远只是一个数字，成长循环
 
 技能选择、天赋树、暂停菜单、对话选择、商店、装备替换、关卡奖励，以及任何“弹出模态 UI 时暂时冻结世界”的系统都会使用类似状态协调。Main 作为协调层的思想也会继续演化成后面的 GameManager。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/10-level-up-choice.md`
+- **开始代码：** `lesson-09-xp-pickup`
+- **完成参考：** `lesson-10-level-up-choice`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 在 Lesson 09 已完成“Enemy 死亡 → ExperienceGem 掉落 → Player 拾取 → XP 增加”的基础上，把 Survivor-like 最核心的一段循环真正跑通：

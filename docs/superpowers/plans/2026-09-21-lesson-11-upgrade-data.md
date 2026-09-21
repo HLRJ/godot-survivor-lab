@@ -937,7 +937,8 @@ Only after all four are confirmed, delete `docs/learning-notes/00-bootstrap.md`.
 
 1. 为什么现在学这一课：从 Lesson 10 已经跑通升级，但 UI/行为重复硬编码 `+40 / -0.1 / +1` 的真实问题切入，并解释为什么没有更早引入 Resource.
 2. 以后做复杂游戏时会在哪里用到：武器、技能、装备、敌人属性、Buff、Loot Table、角色/关卡配置等至少 3 个复用场景.
-3. 本课目标 / 完成效果.
+3. 本课版本与 Checkpoint：最新文档 `main / docs/lessons/11-upgrade-data.md`；开始代码 `lesson-10-level-up-choice`；完成参考 `lesson-11-upgrade-data`；明确 Tag 不随文档更新移动.
+4. 本课目标 / 完成效果.
 4. 前置知识：Lesson 10 Signal、Main 协调、Player/Weapon 状态归属.
 5. 本课新增：`Resource`, `.tres`, `class_name`, 数据/行为分离.
 4. Lesson 10 → 11 key diff:

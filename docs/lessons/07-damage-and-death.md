@@ -10,6 +10,14 @@ Projectile 已经会飞向 Enemy，但如果碰到敌人什么都不发生，攻
 
 伤害、护甲、暴击、Buff/Debuff、Hitbox/Hurtbox、Boss 阶段、物体破坏和死亡事件都会建立在“碰撞报告发生了什么，状态对象决定后果”这种分工上。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/07-damage-and-death.md`
+- **开始代码：** `lesson-06-auto-attack`
+- **完成参考：** `lesson-07-damage-and-death`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 把 Lesson 06 的“Projectile 会自动飞向 Enemy”升级成真正的战斗闭环：命中、掉血、死亡。

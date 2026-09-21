@@ -10,6 +10,14 @@
 
 刷怪、生成子弹、掉落物、技能特效、爆炸、NPC、随机房间和对象工厂都会大量使用“保存场景模板 → 运行时 instantiate”。Timer 也会继续用于波次、冷却和周期事件。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/05-enemy-spawning.md`
+- **开始代码：** `lesson-04-enemy-chase`
+- **完成参考：** `lesson-05-enemy-spawning`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 把 Lesson 04 的“场景里固定放一个 Enemy”，升级成“游戏运行后按时间不断生成 Enemy”。

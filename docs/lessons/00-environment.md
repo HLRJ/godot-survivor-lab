@@ -10,6 +10,14 @@
 
 以后项目越大，越依赖稳定开发环境：统一引擎版本、项目配置、资源导入、目录规范、Git Checkpoint、CI 和团队协作都会建立在这里。大型项目里，“能稳定复现问题”本身就是工程能力。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/00-environment.md`
+- **开始代码：** `无前置 Checkpoint；Clone 仓库后直接按本课完成环境检查`
+- **完成参考：** `lesson-00-environment`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 在 Godot 4.7.2 中打开 Godot Survivor Lab，并成功运行一次。

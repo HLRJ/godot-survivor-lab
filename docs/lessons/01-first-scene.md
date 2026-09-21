@@ -10,6 +10,14 @@
 
 角色、敌人、武器、UI、关卡、特效甚至菜单都会继续用 Scene / Node 组合。以后做嵌套场景、可复用组件、复杂 UI，本质上仍然是在扩展这一课的模型。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/01-first-scene.md`
+- **开始代码：** `lesson-00-environment`
+- **完成参考：** `lesson-01-first-scene`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 理解 Godot 最核心的两个词：`Scene` 和 `Node`，并让一个独立的 `Player.tscn` 出现在主场景中。

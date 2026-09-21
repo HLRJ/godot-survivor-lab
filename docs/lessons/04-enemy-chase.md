@@ -10,6 +10,14 @@
 
 敌人 AI、Boss 追踪、导弹锁定、摄像机跟随、宠物跟随、目标选择和 Steering Behavior 都会反复计算“我在哪里、目标在哪里、应该朝哪个方向行动”。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/04-enemy-chase.md`
+- **开始代码：** `lesson-03-collision`
+- **完成参考：** `lesson-04-enemy-chase`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 新增第一个 Enemy，让它持续追踪 Player 当前的位置。

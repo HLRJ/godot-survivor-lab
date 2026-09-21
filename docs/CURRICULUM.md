@@ -30,6 +30,42 @@
 ```
 
 ---
+
+## 文档版本与学习方式
+
+课程采用“**最新文档 + 不可变代码 Checkpoint**”：
+
+```text
+main
+= 最新、权威的课程说明
+
+lesson-xx-* Tag
+= 某一课完成时的不可变代码快照
+```
+
+学习某一课时遵循：
+
+```text
+1. 在 main 阅读最新 docs/CURRICULUM.md
+2. 在 main 阅读该课最新 docs/lessons/*.md
+3. 从该课写明的“开始代码” Tag 创建自己的 learn/lesson-xx 分支
+4. 按最新 Lesson 文档亲手完成
+5. 卡住时对比“完成参考” Tag
+6. 下一课继续使用新的起点 Checkpoint
+```
+
+例如 Lesson 11：
+
+```bash
+git switch -c learn/lesson-11 lesson-10-level-up-choice
+```
+
+然后阅读 `main / docs/lessons/11-upgrade-data.md`。完成参考为 `lesson-11-upgrade-data`。
+
+**不要为了改进文档移动旧 Lesson Tag。** 半年后即使 Lesson 03 的解释变得更好，`lesson-03-collision` 仍保持原代码快照，最新版解释继续存在 `main`。
+
+---
+
 ## Phase A：先学会让东西动起来
 
 ### Lesson 00：准备环境 —— 先把项目跑起来【已完成】
@@ -42,7 +78,9 @@
 
 **以后会用到：** 引擎版本管理、资源导入、CI、团队环境一致性、问题复现。
 
-**Checkpoint：** `lesson-00-environment`
+**开始代码：** 无前置 Checkpoint；Clone 仓库后直接完成 Lesson 00 的环境检查。
+
+**完成参考：** `lesson-00-environment`
 
 ### Lesson 01：第一个 Scene —— 把 Player 放到屏幕上【已完成】
 
@@ -54,7 +92,9 @@
 
 **以后会用到：** 角色、敌人、UI、关卡、武器、嵌套 Scene、组件复用。
 
-**Checkpoint：** `lesson-01-first-scene`
+**开始代码：** `lesson-00-environment`
+
+**完成参考：** `lesson-01-first-scene`
 ### Lesson 02：玩家移动 —— WASD 控制 Player【已完成】
 
 **做出什么：** Player 响应输入并进行物理移动。
@@ -65,7 +105,9 @@
 
 **以后会用到：** 角色控制器、载具、AI 移动、冲刺、击退、网络同步。
 
-**Checkpoint：** `lesson-02-player-movement`
+**开始代码：** `lesson-01-first-scene`
+
+**完成参考：** `lesson-02-player-movement`
 
 ### Lesson 03：第一次碰撞 —— Player 被墙挡住【已完成】
 
@@ -77,7 +119,9 @@
 
 **以后会用到：** 地形、墙体、Hitbox/Hurtbox、机关、触发区域、拾取、子弹命中。
 
-**Checkpoint：** `lesson-03-collision`
+**开始代码：** `lesson-02-player-movement`
+
+**完成参考：** `lesson-03-collision`
 ### Lesson 04：Enemy 追踪 —— 游戏自己开始行动【已完成】
 
 **做出什么：** Enemy 自动追向 Player。
@@ -88,7 +132,9 @@
 
 **以后会用到：** AI Steering、锁定、导弹、宠物跟随、摄像机、目标选择。
 
-**Checkpoint：** `lesson-04-enemy-chase`
+**开始代码：** `lesson-03-collision`
+
+**完成参考：** `lesson-04-enemy-chase`
 
 ### Lesson 05：不断刷怪 —— 从一个 Enemy 变成持续压力【已完成】
 
@@ -100,7 +146,9 @@
 
 **以后会用到：** 波次、子弹、掉落物、特效、随机房间、对象工厂。
 
-**Checkpoint：** `lesson-05-enemy-spawning`
+**开始代码：** `lesson-04-enemy-chase`
+
+**完成参考：** `lesson-05-enemy-spawning`
 
 ---
 ## Phase B：跑通 Survivor 核心循环
@@ -115,7 +163,9 @@
 
 **以后会用到：** 武器冷却、技能、炮塔、法术、连射、Boss 弹幕。
 
-**Checkpoint：** `lesson-06-auto-attack`
+**开始代码：** `lesson-05-enemy-spawning`
+
+**完成参考：** `lesson-06-auto-attack`
 
 ### Lesson 07：伤害与死亡 —— 攻击真正产生后果【已完成】
 
@@ -127,7 +177,9 @@
 
 **以后会用到：** 伤害系统、护甲、Buff、Hitbox/Hurtbox、Boss 阶段、可破坏物。
 
-**Checkpoint：** `lesson-07-damage-and-death`
+**开始代码：** `lesson-06-auto-attack`
+
+**完成参考：** `lesson-07-damage-and-death`
 ### Lesson 08：经验掉落 —— 击杀开始产生奖励【已完成】
 
 **做出什么：** Enemy 死亡后生成 ExperienceGem。
@@ -138,7 +190,9 @@
 
 **以后会用到：** Loot、金币、装备、死亡特效、任务奖励、积分。
 
-**Checkpoint：** `lesson-08-xp-drop`
+**开始代码：** `lesson-07-damage-and-death`
+
+**完成参考：** `lesson-08-xp-drop`
 
 ### Lesson 09：拾取经验 —— 奖励进入 Player 状态【已完成】
 
@@ -150,7 +204,9 @@
 
 **以后会用到：** 拾取、背包、任务物品、交互、Physics Callback 安全修改 SceneTree。
 
-**Checkpoint：** `lesson-09-xp-pickup`
+**开始代码：** `lesson-08-xp-drop`
+
+**完成参考：** `lesson-09-xp-pickup`
 ### Lesson 10：升级三选一 —— XP 变成玩家决策【已完成】
 
 **做出什么：** 达到经验阈值后暂停战斗，三选一强化并恢复游戏。
@@ -161,7 +217,9 @@
 
 **以后会用到：** 天赋、技能选择、商店、暂停菜单、对话选择、模态 UI、游戏状态协调。
 
-**Checkpoint：** `lesson-10-level-up-choice`
+**开始代码：** `lesson-09-xp-pickup`
+
+**完成参考：** `lesson-10-level-up-choice`
 
 ### Lesson 11：升级数据化 —— 从硬编码走向 Resource【当前】
 
@@ -173,7 +231,9 @@
 
 **以后会用到：** 武器配置、技能、装备、敌人属性、Buff、Loot Table、角色配置、关卡参数和大量平衡数据。
 
-**Checkpoint：** `lesson-11-upgrade-data`
+**开始代码：** `lesson-10-level-up-choice`
+
+**完成参考：** `lesson-11-upgrade-data`
 
 ---
 ## Phase C：从“能跑”变成“像游戏”
@@ -188,7 +248,9 @@
 
 **以后会用到：** 血条、法力、任务追踪、Boss UI、弹药、冷却、Debug Overlay。
 
-**Checkpoint：** `lesson-12-hud`
+**开始代码：** `lesson-11-upgrade-data`
+
+**完成参考：** `lesson-12-hud`
 
 ### Lesson 13：GameManager —— 集中协调真正的全局状态【计划】
 
@@ -200,7 +262,9 @@
 
 **以后会用到：** 场景切换、全局设置、Run State、关卡流程、音频管理、全局事件。
 
-**Checkpoint：** `lesson-13-game-manager`
+**开始代码：** `lesson-12-hud`
+
+**完成参考：** `lesson-13-game-manager`
 ### Lesson 14：死亡与重开 —— 完成一局游戏的闭环【计划】
 
 **做出什么：** Player 死亡 → Game Over → 一键重新开始。
@@ -211,7 +275,9 @@
 
 **以后会用到：** Checkpoint、关卡失败、复活、Retry、Run-based Roguelike 循环。
 
-**Checkpoint：** `lesson-14-restart-loop`
+**开始代码：** `lesson-13-game-manager`
+
+**完成参考：** `lesson-14-restart-loop`
 
 ### Lesson 15：游戏手感 —— 让正确的逻辑“感觉也正确”【计划】
 
@@ -223,7 +289,9 @@
 
 **以后会用到：** Camera Shake、Particles、Animation、Juice、音效层、打击感。
 
-**Checkpoint：** `lesson-15-game-feel`
+**开始代码：** `lesson-14-restart-loop`
+
+**完成参考：** `lesson-15-game-feel`
 
 ---
 ## Phase D：把作品真正交付出去
@@ -238,7 +306,9 @@
 
 **以后会用到：** Steam/TapTap 构建、版本发布、平台打包、Release Pipeline。
 
-**Checkpoint：** `lesson-16-windows-export`
+**开始代码：** `lesson-15-game-feel`
+
+**完成参考：** `lesson-16-windows-export`
 
 ### Lesson 17：Git / GitHub 实战【计划】
 
@@ -250,7 +320,9 @@
 
 **以后会用到：** 所有长期软件/游戏项目、团队协作、实验分支、版本发布。
 
-**Checkpoint：** `lesson-17-git-workflow`
+**开始代码：** `lesson-16-windows-export`
+
+**完成参考：** `lesson-17-git-workflow`
 ### Lesson 18：GitHub Actions【计划】
 
 **做出什么：** Push / PR 后自动用 Headless Godot 验证项目。
@@ -261,7 +333,9 @@
 
 **以后会用到：** 自动测试、构建、发布、多人协作、跨平台验证。
 
-**Checkpoint：** `lesson-18-ci`
+**开始代码：** `lesson-17-git-workflow`
+
+**完成参考：** `lesson-18-ci`
 
 ---
 

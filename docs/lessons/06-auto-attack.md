@@ -10,6 +10,14 @@
 
 武器系统、技能冷却、炮塔、连射、法术、投射物模式和 Boss 弹幕都会使用类似结构：持久对象保存状态，再不断创建短生命周期实例。
 
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/06-auto-attack.md`
+- **开始代码：** `lesson-05-enemy-spawning`
+- **完成参考：** `lesson-06-auto-attack`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
 ## 本课目标
 
 把 Lesson 05 的“Enemy 会不断刷出来”升级成：Player 会自动寻找最近的 Enemy，并周期性发射 Projectile。

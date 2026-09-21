@@ -20,6 +20,24 @@
 - 已理解经验拾取：进入 [Lesson 10：升级三选一](docs/lessons/10-level-up-choice.md)。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
+## 文档版本与 Lesson Checkpoint
+
+课程把“最新教学解释”和“历史代码快照”分开管理：
+
+- **最新教学文档永远看 `main`**：`docs/CURRICULUM.md` 和 `docs/lessons/*.md` 会持续改进。
+- **Lesson Tag 永远不移动**：`lesson-xx-...` 表示那一课完成时的代码快照，用作起点、参考答案和恢复点。
+- 学一课时，从上一课 Tag 创建自己的学习分支，再按照 `main` 上的最新 Lesson 文档动手。
+- 卡住时可以对比本课完成 Tag，但不要直接把 Tag 当成“最新版教程”。
+
+例如学习 Lesson 11：
+
+```text
+最新教程：main / docs/lessons/11-upgrade-data.md
+开始代码：lesson-10-level-up-choice
+完成参考：lesson-11-upgrade-data
+自己的分支：learn/lesson-11
+```
+
 ## 学习原则
 
 - 先看到结果，再补概念。
