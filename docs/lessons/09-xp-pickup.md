@@ -1,5 +1,15 @@
 # Lesson 09：拾取经验球并增加 XP
 
+## 为什么现在学这一课
+
+经验球已经掉出来，但如果玩家不能拾取和保存 XP，它仍然只是视觉效果。现在把 **World 中的 Pickup → Player 的运行时状态** 连起来，并在真实 physics flushing 问题里学习 deferred 时序。
+
+这一课开始接触“对象生命周期”和“什么时候做某件事”同样重要。
+
+## 以后做复杂游戏时会在哪里用到
+
+金币拾取、背包物品、交互物、任务道具、吸附范围，以及任何发生在 Physics Callback 中的生成/删除操作都会遇到类似问题。理解 deferred 和对象生命周期，是以后排查复杂时序 Bug 的基础。
+
 ## 本课目标
 
 在 Lesson 08 的“Enemy 死亡后留下 ExperienceGem”基础上，完成最小拾取闭环：Player 身体接触经验球后，经验球消失，Player 的 `experience` 增加。

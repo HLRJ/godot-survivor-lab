@@ -1,5 +1,15 @@
 # Lesson 07：让 Projectile 真正打伤 Enemy
 
+## 为什么现在学这一课
+
+Projectile 已经会飞向 Enemy，但如果碰到敌人什么都不发生，攻击仍然只是动画。现在必须让“命中”产生后果：检测重叠、扣血、死亡。
+
+这会第一次完整连接 **Area2D → Signal → Health 状态 → queue_free()**。
+
+## 以后做复杂游戏时会在哪里用到
+
+伤害、护甲、暴击、Buff/Debuff、Hitbox/Hurtbox、Boss 阶段、物体破坏和死亡事件都会建立在“碰撞报告发生了什么，状态对象决定后果”这种分工上。
+
 ## 本课目标
 
 把 Lesson 06 的“Projectile 会自动飞向 Enemy”升级成真正的战斗闭环：命中、掉血、死亡。

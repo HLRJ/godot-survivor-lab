@@ -6,6 +6,7 @@
 
 ## 从这里开始
 
+- 想先看完整学习路线：阅读 [课程总览：Lesson 00–18](docs/CURRICULUM.md)，先知道每课为什么学、以后哪里会复用。
 - 完全没用过 Godot：从 [Lesson 00：准备环境](docs/lessons/00-environment.md) 开始。
 - 已经能打开并运行项目：进入 [Lesson 01：第一个 Scene](docs/lessons/01-first-scene.md)。
 - 已理解 Scene / Node：进入 [Lesson 02：玩家移动](docs/lessons/02-player-movement.md)。
