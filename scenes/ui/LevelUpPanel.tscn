@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scripts/ui/level_up_panel.gd" id="1_script"]
+[ext_resource type="Resource" path="res://resources/upgrades/move_speed.tres" id="2_move"]
+[ext_resource type="Resource" path="res://resources/upgrades/attack_speed.tres" id="3_attack"]
+[ext_resource type="Resource" path="res://resources/upgrades/projectile_damage.tres" id="4_damage"]
 
 [node name="LevelUpPanel" type="CanvasLayer"]
 process_mode = 2
 visible = false
 script = ExtResource("1_script")
+move_speed_upgrade = ExtResource("2_move")
+attack_speed_upgrade = ExtResource("3_attack")
+projectile_damage_upgrade = ExtResource("4_damage")
 
 [node name="Overlay" type="Control" parent="."]
 layout_mode = 3
@@ -52,14 +58,14 @@ horizontal_alignment = 1
 [node name="MoveSpeedButton" type="Button" parent="Overlay/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
-text = "移动速度 +40"
+text = "Upgrade"
 
 [node name="AttackSpeedButton" type="Button" parent="Overlay/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
-text = "攻击间隔 -0.1 秒"
+text = "Upgrade"
 
 [node name="DamageButton" type="Button" parent="Overlay/PanelContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 52)
 layout_mode = 2
-text = "子弹伤害 +1"
+text = "Upgrade"

@@ -37,9 +37,9 @@ func _find_nearest_enemy() -> Node2D:
             nearest_distance = distance
     return nearest
 
-func upgrade_attack_speed() -> void:
-    attack_interval = maxf(0.2, attack_interval - 0.1)
+func upgrade_attack_speed(amount: float) -> void:
+    attack_interval = maxf(0.2, attack_interval - amount)
     timer.wait_time = attack_interval
 
-func upgrade_projectile_damage() -> void:
-    projectile_damage += 1
+func upgrade_projectile_damage(amount: int) -> void:
+    projectile_damage += amount

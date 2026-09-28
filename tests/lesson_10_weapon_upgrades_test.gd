@@ -63,18 +63,18 @@ func _run() -> void:
         _expect(int(weapon.get("projectile_damage")) == 1, "Projectile damage must start at 1")
 
     if has_attack_upgrade and timer != null:
-        weapon.call("upgrade_attack_speed")
+        weapon.call("upgrade_attack_speed", 0.1)
         _expect(abs(float(weapon.get("attack_interval")) - 0.7) < 0.001, "Attack interval must drop by 0.1")
         _expect(abs(timer.wait_time - 0.7) < 0.001, "Timer.wait_time must follow attack_interval")
 
         for _i in range(20):
-            weapon.call("upgrade_attack_speed")
+            weapon.call("upgrade_attack_speed", 0.1)
 
         _expect(abs(float(weapon.get("attack_interval")) - 0.2) < 0.001, "Attack interval must stop at 0.2")
         _expect(abs(timer.wait_time - 0.2) < 0.001, "Timer floor must also be 0.2")
 
     if has_damage_state and has_damage_upgrade:
-        weapon.call("upgrade_projectile_damage")
+        weapon.call("upgrade_projectile_damage", 1)
         _expect(int(weapon.get("projectile_damage")) == 2, "Damage upgrade must persist on Weapon")
 
         var enemy := enemy_scene.instantiate() as CharacterBody2D
