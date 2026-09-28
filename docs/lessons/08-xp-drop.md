@@ -18,6 +18,10 @@
 
 > 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
 
+## 概念延伸
+
+本课第一次让自定义事件驱动另一个对象的行为。需要系统复习时阅读 [Signal 的完整事件流](../concepts/signal-and-event-flow.md)：它串联 `signal → connect → emit → callback`，也解释什么时候应直接调用函数。
+
 ## 本课目标
 
 把 Lesson 07 的“Enemy 会死亡”继续向前推进一步：Enemy 死亡时主动发出自定义 Signal，EnemySpawner 接收这个事件，并在死亡位置生成 ExperienceGem。

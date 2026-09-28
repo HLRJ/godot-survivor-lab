@@ -18,6 +18,10 @@
 
 > 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
 
+## 概念延伸
+
+这一课真实遇到了物理查询阶段创建经验球的问题，回顾机制请看 [物理回调中的延迟操作与对象生命周期](../concepts/deferred-physics-and-lifecycle.md)，理解 `call_deferred`、`queue_free` 和先保存坐标值的意义。
+
 ## 本课目标
 
 在 Lesson 08 的“Enemy 死亡后留下 ExperienceGem”基础上，完成最小拾取闭环：Player 身体接触经验球后，经验球消失，Player 的 `experience` 增加。

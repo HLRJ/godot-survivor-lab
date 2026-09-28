@@ -18,6 +18,7 @@
 - 已理解伤害与死亡：进入 [Lesson 08：经验掉落](docs/lessons/08-xp-drop.md)。
 - 已理解经验掉落：进入 [Lesson 09：拾取经验](docs/lessons/09-xp-pickup.md)。
 - 已理解经验拾取：进入 [Lesson 10：升级三选一](docs/lessons/10-level-up-choice.md)。
+- 已完成升级三选一：进入 [Lesson 11：升级数据化](docs/lessons/11-upgrade-data.md)，学习 Resource、`.tres` 和配置与行为分离。
 - 想查概念：只看当前 Lesson 链接到的 `docs/concepts/` 页面，不提前背 API。
 
 ## 文档版本与 Lesson Checkpoint
@@ -43,7 +44,8 @@
 - 先看到结果，再补概念。
 - 每次只引入少量新东西，优先保持项目可运行。
 - 每个新概念至少亲自运行一次、改一个值、先预测再验证。
-- 每课先说明复用了哪些前置 Lesson，再讲本课真正新增的概念。
+- 每课先讲清楚**为什么现在学、以后复杂游戏哪里会复用**，再列出本课复用的旧概念和真正新增的内容。
+- 每个关键概念至少回答：**怎么做 → 为什么 → 写错会怎样 → 还有哪些方案、为什么当前没选**。
 - 从 Lesson 07 起，每课至少亲手修改或补写一小段核心 GDScript，不只改 Inspector 参数。
 - 卡住时优先使用 Git Checkpoint 对比，而不是删项目重来。
 
@@ -85,4 +87,4 @@
 
 ## 当前进度
 
-Lesson 10 已完成：经验达到阈值后会触发升级，战斗暂停并显示三选一；选择移动速度、攻击速度或 Projectile 伤害后，强化真实生效并恢复战斗。同时进一步理解了 Signal 的 connect/emit、Timer、SceneTree 暂停、运行时状态归属与 Main 协调层。
+Lesson 11 已完成核心玩法与数据化验证：三个强化改为 `UpgradeData` Resource / `.tres`，LevelUpPanel 显示 Resource 标签并发出对象，Main 依据 `id` 路由并把 `amount` 传给 Player/Weapon；暂停、连升多级和攻击间隔下限保持不变。亲手完成了 `+40 → +80` 的配置驱动实验，以及移除 Resource 后的 `Nil.label` 故障实验。相关概念见 [Resource 与数据驱动](docs/concepts/resource-and-data-driven-design.md)、[Signal 完整事件流](docs/concepts/signal-and-event-flow.md)、[SceneTree 暂停](docs/concepts/scene-tree-pause.md) 和 [物理回调延迟操作](docs/concepts/deferred-physics-and-lifecycle.md)。

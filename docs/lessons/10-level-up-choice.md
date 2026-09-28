@@ -18,6 +18,10 @@ Player 已经能获得 XP，但 XP 如果永远只是一个数字，成长循环
 
 > 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
 
+## 概念延伸
+
+本课关于一对多通知、重复 `emit`、Signal 参数的讨论收录在 [Signal 完整事件流](../concepts/signal-and-event-flow.md)；暂停后 UI 为什么还能点击、多级经验为何仍会继续 `emit`，参见 [SceneTree 暂停与 process_mode](../concepts/scene-tree-pause.md)。
+
 ## 本课目标
 
 在 Lesson 09 已完成“Enemy 死亡 → ExperienceGem 掉落 → Player 拾取 → XP 增加”的基础上，把 Survivor-like 最核心的一段循环真正跑通：
