@@ -1,5 +1,27 @@
 # Lesson 10：升级三选一
 
+## 为什么现在学这一课
+
+Player 已经能获得 XP，但 XP 如果永远只是一个数字，成长循环仍然没有意义。现在要把“经验达到阈值”变成一次真正决策：暂停战斗、出现三选一、应用强化、继续游戏。
+
+这一课把之前分散的 Signal、Timer、Player 状态和 UI 第一次组织成完整游戏流程。
+
+## 以后做复杂游戏时会在哪里用到
+
+技能选择、天赋树、暂停菜单、对话选择、商店、装备替换、关卡奖励，以及任何“弹出模态 UI 时暂时冻结世界”的系统都会使用类似状态协调。Main 作为协调层的思想也会继续演化成后面的 GameManager。
+
+## 本课版本与 Checkpoint
+
+- **最新教学文档：** `main / docs/lessons/10-level-up-choice.md`
+- **开始代码：** `lesson-09-xp-pickup`
+- **完成参考：** `lesson-10-level-up-choice`
+
+> 教学解释以 `main` 上的最新文档为准；Lesson Tag 是不可变的代码快照，不会为了更新文档而移动。
+
+## 概念延伸
+
+本课关于一对多通知、重复 `emit`、Signal 参数的讨论收录在 [Signal 完整事件流](../concepts/signal-and-event-flow.md)；暂停后 UI 为什么还能点击、多级经验为何仍会继续 `emit`，参见 [SceneTree 暂停与 process_mode](../concepts/scene-tree-pause.md)。
+
 ## 本课目标
 
 在 Lesson 09 已完成“Enemy 死亡 → ExperienceGem 掉落 → Player 拾取 → XP 增加”的基础上，把 Survivor-like 最核心的一段循环真正跑通：

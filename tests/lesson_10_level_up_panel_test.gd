@@ -1,7 +1,7 @@
 extends SceneTree
 
 var failures: int = 0
-var emitted_upgrades: Array[String] = []
+var emitted_upgrades: Array[UpgradeData] = []
 
 func _initialize() -> void:
     call_deferred("_run")
@@ -12,8 +12,8 @@ func _expect(condition: bool, message: String) -> void:
     failures += 1
     push_error(message)
 
-func _on_upgrade_selected(upgrade_id: String) -> void:
-    emitted_upgrades.append(upgrade_id)
+func _on_upgrade_selected(upgrade: UpgradeData) -> void:
+    emitted_upgrades.append(upgrade)
 
 func _run() -> void:
     var panel_scene := load("res://scenes/ui/LevelUpPanel.tscn") as PackedScene
@@ -59,10 +59,11 @@ func _run() -> void:
         attack_button.pressed.emit()
         damage_button.pressed.emit()
 
-        _expect(
-            emitted_upgrades == ["move_speed", "attack_speed", "projectile_damage"],
-            "Paused buttons must emit the three fixed upgrade ids in order"
-        )
+        _expect(emitted_upgrades.size() == 3, "Paused buttons must emit three upgrades")
+        if emitted_upgrades.size() == 3:
+            _expect(emitted_upgrades[0].id == &"move_speed", "First choice must be move speed")
+            _expect(emitted_upgrades[1].id == &"attack_speed", "Second choice must be attack speed")
+            _expect(emitted_upgrades[2].id == &"projectile_damage", "Third choice must be projectile damage")
 
     paused = false
     panel.queue_free()

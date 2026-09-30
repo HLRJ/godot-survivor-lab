@@ -58,6 +58,13 @@ func _run() -> void:
     )
 
     if can_test_flow:
+        var move_upgrade := panel.get("move_speed_upgrade") as UpgradeData
+        var attack_upgrade := panel.get("attack_speed_upgrade") as UpgradeData
+        var damage_upgrade := panel.get("projectile_damage_upgrade") as UpgradeData
+        _expect(move_upgrade != null, "Move speed Resource must be assigned")
+        _expect(attack_upgrade != null, "Attack speed Resource must be assigned")
+        _expect(damage_upgrade != null, "Projectile damage Resource must be assigned")
+
         player.call("add_experience", 13)
 
         _expect(int(main.get("pending_level_ups")) == 2, "13 XP must queue two upgrade choices")
@@ -65,7 +72,7 @@ func _run() -> void:
         _expect(panel.visible, "Level-up panel must be visible while paused")
 
         var starting_speed := float(player.get("speed"))
-        panel.emit_signal("upgrade_selected", "move_speed")
+        panel.emit_signal("upgrade_selected", move_upgrade)
 
         _expect(float(player.get("speed")) == starting_speed + 40.0, "Move choice must upgrade Player speed")
         _expect(int(main.get("pending_level_ups")) == 1, "First choice must consume exactly one pending upgrade")
@@ -73,7 +80,7 @@ func _run() -> void:
         _expect(panel.visible, "Panel must remain visible for the second pending choice")
 
         var starting_damage := int(weapon.get("projectile_damage"))
-        panel.emit_signal("upgrade_selected", "projectile_damage")
+        panel.emit_signal("upgrade_selected", damage_upgrade)
 
         _expect(int(weapon.get("projectile_damage")) == starting_damage + 1, "Damage choice must upgrade Weapon")
         _expect(int(main.get("pending_level_ups")) == 0, "Second choice must drain pending queue")
@@ -82,11 +89,14 @@ func _run() -> void:
 
         player.call("add_experience", 11)
         _expect(int(main.get("pending_level_ups")) == 1, "One more level must queue one upgrade")
-        panel.emit_signal("upgrade_selected", "invalid_upgrade")
+        var unknown_upgrade := UpgradeData.new()
+        unknown_upgrade.id = &"invalid_upgrade"
+        unknown_upgrade.amount = 999.0
+        panel.emit_signal("upgrade_selected", unknown_upgrade)
         _expect(int(main.get("pending_level_ups")) == 1, "Invalid upgrade must not consume a pending choice")
         _expect(paused, "Invalid upgrade must not resume gameplay")
 
-        panel.emit_signal("upgrade_selected", "attack_speed")
+        panel.emit_signal("upgrade_selected", attack_upgrade)
         _expect(int(main.get("pending_level_ups")) == 0, "Valid choice must clear remaining pending upgrade")
         _expect(not paused, "Gameplay must resume after valid fallback choice")
 

@@ -24,5 +24,5 @@ func add_experience(amount: int) -> void:
         experience_to_next_level += 3
         level_up.emit(level)
 
-func upgrade_move_speed() -> void:
-    speed += 40.0
+func upgrade_move_speed(amount: float) -> void:
+    speed += amount
